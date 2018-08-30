@@ -1,2 +1,3 @@
 # boggleSlam
-Hasbro Boggle Slam™ distributed system adaptation.
+
+Adaptação do jogo Boggle Slam™ da Hasbro para um sistema distribuído.
