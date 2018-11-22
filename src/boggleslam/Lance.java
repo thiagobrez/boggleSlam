@@ -3,7 +3,7 @@ public class Lance implements ILance, Jogada {
 	protected Jogador jogador;
 	protected int cartaJogada;
 	protected int cartaSubstituida;
-	protected string stringFormada;
+	protected String stringFormada;
 	protected boolean valido;
 	protected boolean desafiado;
 

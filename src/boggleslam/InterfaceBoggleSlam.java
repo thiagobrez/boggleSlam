@@ -5,12 +5,12 @@ public class InterfaceBoggleSlam extends JFrame {
 		throw new UnsupportedOperationException();
 	}
 
-	public string obterServidor() {
+	public String obterServidor() {
 		// TODO - implement InterfaceBoggleSlam.obterServidor
 		throw new UnsupportedOperationException();
 	}
 
-	public string obterIdJogador() {
+	public String obterIdJogador() {
 		// TODO - implement InterfaceBoggleSlam.obterIdJogador
 		throw new UnsupportedOperationException();
 	}

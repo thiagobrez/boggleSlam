@@ -10,13 +10,13 @@ public interface OuvidorProxy {
 	 * 
 	 * @param message
 	 */
-	void finalizarPartidaComErro(string message);
+	void finalizarPartidaComErro(String message);
 
 	/**
 	 * 
 	 * @param message
 	 */
-	void receberMensagem(string message);
+	void receberMensagem(String message);
 
 	/**
 	 * 
@@ -30,6 +30,6 @@ public interface OuvidorProxy {
 	 * 
 	 * @param message
 	 */
-	void tratarPartidaNaoIniciada(string message);
+	void tratarPartidaNaoIniciada(String message);
 
 }

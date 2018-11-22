@@ -1,7 +1,7 @@
 public class Jogador {
 
 	protected int id;
-	protected string nome;
+	protected String nome;
 	protected Carta cartas;
 	protected boolean vencedor;
 	protected boolean jogadaHabilitada;

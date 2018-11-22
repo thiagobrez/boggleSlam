@@ -1,13 +1,13 @@
 public class GerenciadorPersistencia {
 
 	protected int cache;
-	protected string fileName;
+	protected String fileName;
 
 	/**
 	 * 
 	 * @param palavra
 	 */
-	public void persistirPalavra(string palavra) {
+	public void persistirPalavra(String palavra) {
 		// TODO - implement GerenciadorPersistencia.persistirPalavra
 		throw new UnsupportedOperationException();
 	}
@@ -16,7 +16,7 @@ public class GerenciadorPersistencia {
 	 * 
 	 * @param palavra
 	 */
-	public string get(string palavra) {
+	public String get(String palavra) {
 		// TODO - implement GerenciadorPersistencia.get
 		throw new UnsupportedOperationException();
 	}

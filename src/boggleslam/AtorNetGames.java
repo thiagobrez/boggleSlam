@@ -8,7 +8,7 @@ public class AtorNetGames implements OuvidorProxy {
 	 * @param servidor
 	 * @param nome
 	 */
-	public boolean conectar(string servidor, string nome) {
+	public boolean conectar(String servidor, String nome) {
 		// TODO - implement AtorNetGames.conectar
 		throw new UnsupportedOperationException();
 	}
@@ -48,6 +48,26 @@ public class AtorNetGames implements OuvidorProxy {
 	public void enviarJogada(Jogada primeiroLance) {
 		// TODO - implement AtorNetGames.enviarJogada
 		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void finalizarPartidaComErro(String message) {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	@Override
+	public void receberMensagem(String message) {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	@Override
+	public void tratarConexaoPerdida() {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	@Override
+	public void tratarPartidaNaoIniciada(String message) {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
 
 }
