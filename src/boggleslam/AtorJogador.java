@@ -1,13 +1,45 @@
+
+import br.ufsc.inf.leobr.cliente.Jogada;
+
 public class AtorJogador {
 
 	protected Mesa mesa;
 	protected int idJogador;
 	protected AtorNetGames rede;
 	protected GerenciadorPersistencia gerenciadorPersistencia;
+	protected InterfaceBoggleSlam interfaceBoggleSlam;
+	protected String nomeJogador;
 
+	public AtorJogador(
+			Mesa mesa,
+			int idJogador,
+			AtorNetGames rede,
+			GerenciadorPersistencia gerenciadorPersistencia,
+			InterfaceBoggleSlam interfaceBoggleSlam
+	) {
+		this.mesa = mesa;
+		this.idJogador = idJogador;
+		this.rede = rede;
+		this.gerenciadorPersistencia = gerenciadorPersistencia;
+		this.interfaceBoggleSlam = interfaceBoggleSlam;
+	}
+	
 	public int conectar() {
-		// TODO - implement AtorJogador.conectar
-		throw new UnsupportedOperationException();
+		boolean conectado = mesa.informarConectado();
+		
+		if(!conectado) {
+			String servidor = interfaceBoggleSlam.obterServidor();
+			nomeJogador = interfaceBoggleSlam.obterNomeJogador();
+			boolean exito = rede.conectar(servidor, nomeJogador);
+			
+			if(exito) {
+				mesa.estabelecerConectado(true);
+				return 0;
+			} else {
+				return 2;
+			}
+		}
+		return 1;
 	}
 
 	public int desconectar() {
