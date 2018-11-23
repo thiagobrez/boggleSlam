@@ -1,14 +1,22 @@
+
+import br.ufsc.inf.leobr.cliente.Jogada;
+import java.util.ArrayList;
+
 public class Mesa {
 
 	protected Baralho baralho;
 	protected Carta cartas;
-	protected Jogador jogadores;
+	protected ArrayList<Jogador> jogadores;
 	protected Jogador jogadorAtual;
 	protected boolean partidaEmAndamento;
+	protected boolean conectado;
 
+	public Mesa() {
+		this.jogadores = new ArrayList<>();
+	}
+	
 	public boolean informarConectado() {
-		// TODO - implement Mesa.informarConectado
-		throw new UnsupportedOperationException();
+		return this.conectado;
 	}
 
 	/**
@@ -16,13 +24,19 @@ public class Mesa {
 	 * @param valor
 	 */
 	public void estabelecerConectado(boolean valor) {
-		// TODO - implement Mesa.estabelecerConectado
-		throw new UnsupportedOperationException();
+		this.conectado = valor;
 	}
 
 	public boolean informarEmAndamento() {
-		// TODO - implement Mesa.informarEmAndamento
-		throw new UnsupportedOperationException();
+		return this.partidaEmAndamento;
+	}
+
+	public ArrayList<Jogador> getJogadores() {
+		return jogadores;
+	}
+
+	public void setJogadores(ArrayList<Jogador> jogadores) {
+		this.jogadores = jogadores;
 	}
 
 	/**

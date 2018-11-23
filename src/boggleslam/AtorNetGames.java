@@ -9,11 +9,11 @@ import br.ufsc.inf.leobr.cliente.exception.NaoPossivelConectarException;
 
 public class AtorNetGames implements OuvidorProxy {
 
-	protected AtorJogador interfaceGrafica;
+	protected AtorJogador atorJogador;
 	protected Proxy proxy;
 
-	public AtorNetGames(AtorJogador interfaceGrafica, Proxy proxy) {
-		this.interfaceGrafica = interfaceGrafica;
+	public AtorNetGames(AtorJogador atorJogador) {
+		this.atorJogador = atorJogador;
 		this.proxy = Proxy.getInstance();
 		proxy.addOuvinte(this);	
 	}
@@ -28,15 +28,15 @@ public class AtorNetGames implements OuvidorProxy {
 			proxy.conectar(servidor, nome);
 			return true;
 		} catch (JahConectadoException e) {
-//			JOptionPane.showMessageDialog(interfaceGrafica.informarJanela(), e.getMessage());
+//			JOptionPane.showMessageDialog(atorJogador.informarJanela(), e.getMessage());
 			e.printStackTrace();
 			return false;
 		} catch (NaoPossivelConectarException e) {
-//			JOptionPane.showMessageDialog(interfaceGrafica.informarJanela(), e.getMessage());
+//			JOptionPane.showMessageDialog(atorJogador.informarJanela(), e.getMessage());
 			e.printStackTrace();
 			return false;
 		} catch (ArquivoMultiplayerException e) {
-//			JOptionPane.showMessageDialog(interfaceGrafica.informarJanela(), e.getMessage());
+//			JOptionPane.showMessageDialog(atorJogador.informarJanela(), e.getMessage());
 			e.printStackTrace();
 			return false;
 		}
@@ -47,7 +47,7 @@ public class AtorNetGames implements OuvidorProxy {
 			proxy.desconectar();
 			return true;
 		} catch (NaoConectadoException e) {
-//			JOptionPane.showMessageDialog(interfaceGrafica.informarJanela(), e.getMessage());
+//			JOptionPane.showMessageDialog(atorJogador.informarJanela(), e.getMessage());
 			e.printStackTrace();
 			return false;
 		}
@@ -57,7 +57,7 @@ public class AtorNetGames implements OuvidorProxy {
 		try {
 			proxy.iniciarPartida(new Integer(4));
 		} catch (NaoConectadoException e) {
-//			JOptionPane.showMessageDialog(interfaceGrafica.informarJanela(), e.getMessage());
+//			JOptionPane.showMessageDialog(atorJogador.informarJanela(), e.getMessage());
 			e.printStackTrace();
 		}
 	}
@@ -79,7 +79,7 @@ public class AtorNetGames implements OuvidorProxy {
 		try {
 			proxy.enviaJogada(lance);
 		} catch (NaoJogandoException e) {
-//			JOptionPane.showMessageDialog(interfaceGrafica.informarJanela(), e.getMessage());
+//			JOptionPane.showMessageDialog(atorJogador.informarJanela(), e.getMessage());
 			e.printStackTrace();
 		}
 	}
@@ -91,12 +91,12 @@ public class AtorNetGames implements OuvidorProxy {
 	@Override
 	public void receberJogada(Jogada jogada) {
 		Lance estado = (Lance) jogada;
-		interfaceGrafica.receberJogada(estado);
+		atorJogador.receberJogada(estado);
 	}
 	
 	@Override
 	public void iniciarNovaPartida(Integer posicao) {
-		interfaceGrafica.iniciarNovaPartida(posicao);
+		atorJogador.iniciarNovaPartida(posicao);
 	}
 	
 	@Override

@@ -1,26 +1,20 @@
-
 import br.ufsc.inf.leobr.cliente.Jogada;
+import java.util.ArrayList;
 
 public class AtorJogador {
 
 	protected Mesa mesa;
-	protected int idJogador;
+	protected ArrayList<Carta> cartas;
+	protected String idJogador;
 	protected AtorNetGames rede;
 	protected GerenciadorPersistencia gerenciadorPersistencia;
 	protected InterfaceBoggleSlam interfaceBoggleSlam;
-	protected String nomeJogador;
+	protected int posicao;
 
-	public AtorJogador(
-			Mesa mesa,
-			int idJogador,
-			AtorNetGames rede,
-			GerenciadorPersistencia gerenciadorPersistencia,
-			InterfaceBoggleSlam interfaceBoggleSlam
-	) {
-		this.mesa = mesa;
-		this.idJogador = idJogador;
-		this.rede = rede;
-		this.gerenciadorPersistencia = gerenciadorPersistencia;
+	public AtorJogador(InterfaceBoggleSlam interfaceBoggleSlam) {
+		this.mesa = new Mesa();
+		this.rede = new AtorNetGames(this);
+		this.gerenciadorPersistencia = new GerenciadorPersistencia();
 		this.interfaceBoggleSlam = interfaceBoggleSlam;
 	}
 	
@@ -29,8 +23,8 @@ public class AtorJogador {
 		
 		if(!conectado) {
 			String servidor = interfaceBoggleSlam.obterServidor();
-			nomeJogador = interfaceBoggleSlam.obterNomeJogador();
-			boolean exito = rede.conectar(servidor, nomeJogador);
+			idJogador = interfaceBoggleSlam.obterIdJogador();
+			boolean exito = rede.conectar(servidor, idJogador);
 			
 			if(exito) {
 				mesa.estabelecerConectado(true);
@@ -43,18 +37,46 @@ public class AtorJogador {
 	}
 
 	public int desconectar() {
-		// TODO - implement AtorJogador.desconectar
-		throw new UnsupportedOperationException();
+		boolean conectado = mesa.informarConectado();
+		
+		if(conectado) {
+			boolean exito = rede.desconectar();
+			
+			if(exito) {
+				mesa.estabelecerConectado(false);
+				return 3;
+			} else {
+				return 5;
+			}
+			
+		}
+		return 4;
 	}
 
 	public int iniciarPartida() {
-		// TODO - implement AtorJogador.iniciarPartida
-		throw new UnsupportedOperationException();
+		boolean emAndamento = mesa.informarEmAndamento();
+		boolean interromper = false;
+		boolean conectado = false;
+		
+		if(emAndamento) {
+			interromper = avaliarInterrupcao();
+		} else {
+			conectado = mesa.informarConectado();
+		}
+		
+		if(interromper || (!emAndamento && conectado)) {
+			rede.iniciarPartida();
+			return 6;
+		}
+		
+		if(!conectado) {
+			return 7;
+		}
+		return 13;
 	}
 
 	public boolean avaliarInterrupcao() {
-		// TODO - implement AtorJogador.avaliarInterrupcao
-		throw new UnsupportedOperationException();
+		return true;
 	}
 
 	/**
@@ -66,31 +88,41 @@ public class AtorJogador {
 		throw new UnsupportedOperationException();
 	}
 
+	public boolean verificaPrimeiroLance(Jogada jogada) {
+		return jogada instanceof PrimeiroLance;
+	}
+	
 	/**
 	 * 
 	 * @param jogada
 	 */
 	public void receberJogada(Jogada jogada) {
-		// TODO - implement AtorJogador.receberJogada
-		throw new UnsupportedOperationException();
+		boolean primeiroLance = verificaPrimeiroLance(jogada);
+		
+		if(primeiroLance) {
+			setMesa(((PrimeiroLance) jogada).getMesa());
+			setCartas(((PrimeiroLance) jogada).getMesa().getJogadores().get(this.posicao).getCartas());
+		} else {
+			atualizarMesa(mesa);
+		}
+		
+		interfaceBoggleSlam.exibirEstado();
 	}
 
 	/**
 	 * 
 	 * @param mesa
 	 */
-	public void guardarMesa(Mesa mesa) {
-		// TODO - implement AtorJogador.guardarMesa
-		throw new UnsupportedOperationException();
+	public void setMesa(Mesa mesa) {
+		this.mesa = mesa;
 	}
 
 	/**
 	 * 
 	 * @param cartas
 	 */
-	public void guardarCartas(Carta[] cartas) {
-		// TODO - implement AtorJogador.guardarCartas
-		throw new UnsupportedOperationException();
+	public void setCartas(ArrayList<Carta> cartas) {
+		this.cartas = cartas;
 	}
 
 	/**
@@ -107,8 +139,8 @@ public class AtorJogador {
 	 * @param posicao
 	 */
 	public void iniciarNovaPartida(int posicao) {
-		// TODO - implement AtorJogador.iniciarNovaPartida
-		throw new UnsupportedOperationException();
+		this.posicao = posicao;
+		//TODO BOTAR MAISSSSS
 	}
 
 }
