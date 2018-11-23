@@ -103,7 +103,7 @@ public class AtorJogador {
 			setMesa(((PrimeiroLance) jogada).getMesa());
 			setCartas(((PrimeiroLance) jogada).getMesa().getJogadores().get(this.posicao).getCartas());
 		} else {
-			atualizarMesa(mesa);
+			atualizarMesa((Lance) jogada);
 		}
 		
 		interfaceBoggleSlam.exibirEstado();
@@ -127,11 +127,10 @@ public class AtorJogador {
 
 	/**
 	 * 
-	 * @param mesa
+	 * @param lance
 	 */
-	public void atualizarMesa(Mesa mesa) {
-		// TODO - implement AtorJogador.atualizarMesa
-		throw new UnsupportedOperationException();
+	public void atualizarMesa(Lance lance) {
+		this.mesa.cartas.set(lance.getCartaSubstituida(), lance.getCartaJogada());
 	}
 
 	/**
@@ -140,7 +139,11 @@ public class AtorJogador {
 	 */
 	public void iniciarNovaPartida(int posicao) {
 		this.posicao = posicao;
-		//TODO BOTAR MAISSSSS
+		
+		if(posicao == 1) {
+			
+			Mesa mesa = new Mesa();
+		}
 	}
 
 }

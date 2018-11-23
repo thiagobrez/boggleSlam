@@ -1,11 +1,10 @@
-
 import br.ufsc.inf.leobr.cliente.Jogada;
 import java.util.ArrayList;
 
 public class Mesa {
 
 	protected Baralho baralho;
-	protected Carta cartas;
+	protected ArrayList<Carta> cartas;
 	protected ArrayList<Jogador> jogadores;
 	protected Jogador jogadorAtual;
 	protected boolean partidaEmAndamento;
