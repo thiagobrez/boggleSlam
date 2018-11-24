@@ -6,6 +6,7 @@ import br.ufsc.inf.leobr.cliente.exception.JahConectadoException;
 import br.ufsc.inf.leobr.cliente.exception.NaoConectadoException;
 import br.ufsc.inf.leobr.cliente.exception.NaoJogandoException;
 import br.ufsc.inf.leobr.cliente.exception.NaoPossivelConectarException;
+import java.util.ArrayList;
 
 public class AtorNetGames implements OuvidorProxy {
 
@@ -92,6 +93,10 @@ public class AtorNetGames implements OuvidorProxy {
 	public void receberJogada(Jogada jogada) {
 		Lance estado = (Lance) jogada;
 		atorJogador.receberJogada(estado);
+	}
+	
+	public ArrayList<String> obterNomeAdversarios() {
+		return (ArrayList) proxy.obterNomeAdversarios();
 	}
 	
 	@Override

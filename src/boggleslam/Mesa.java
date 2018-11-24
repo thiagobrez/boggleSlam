@@ -10,8 +10,19 @@ public class Mesa {
 	protected boolean partidaEmAndamento;
 	protected boolean conectado;
 
-	public Mesa() {
-		this.jogadores = new ArrayList<>();
+	public Mesa(ArrayList<Jogador> jogadores) {
+		this.baralho = new Baralho();
+		this.jogadores = jogadores;
+		this.partidaEmAndamento = true;
+		distribuirCartas();
+	}
+
+	public Baralho getBaralho() {
+		return baralho;
+	}
+
+	public void setBaralho(Baralho baralho) {
+		this.baralho = baralho;
 	}
 	
 	public boolean informarConectado() {

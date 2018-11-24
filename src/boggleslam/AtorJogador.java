@@ -12,7 +12,6 @@ public class AtorJogador {
 	protected int posicao;
 
 	public AtorJogador(InterfaceBoggleSlam interfaceBoggleSlam) {
-		this.mesa = new Mesa();
 		this.rede = new AtorNetGames(this);
 		this.gerenciadorPersistencia = new GerenciadorPersistencia();
 		this.interfaceBoggleSlam = interfaceBoggleSlam;
@@ -141,9 +140,20 @@ public class AtorJogador {
 		this.posicao = posicao;
 		
 		if(posicao == 1) {
+			ArrayList<Jogador> jogadores = new ArrayList<>();
+			ArrayList<String> nomesAdversarios = rede.obterNomeAdversarios();
 			
-			Mesa mesa = new Mesa();
+			for(int i = 1; i <= 4; i++) {
+				jogadores.add(new Jogador(i, nomesAdversarios.get(i)));
+			}
+			
+			Mesa mesa = new Mesa(jogadores);
+			PrimeiroLance primeiroLance = new PrimeiroLance(mesa);
+			
+			rede.enviarJogada(primeiroLance);
 		}
+		
+		interfaceBoggleSlam.exibirEstado();
 	}
 
 }

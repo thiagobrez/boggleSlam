@@ -9,8 +9,10 @@ public class Jogador {
 	protected boolean vencedor;
 	protected boolean jogadaHabilitada;
 
-	public Jogador() {
+	public Jogador(int id, String nome) {
 		this.cartas = new ArrayList<>();
+		this.vencedor = false;
+		this.jogadaHabilitada = false;
 	}
 	
 	public ArrayList<Carta> getCartas() {
