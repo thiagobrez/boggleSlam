@@ -98,7 +98,7 @@ public class AtorJogador {
 		interfaceBoggleSlam.exibirEstado();
 	}
 
-	public void click(Carta cartaJogada, int cartaSubstituida) {
+	public String preparaStringFormada(Carta cartaJogada, int cartaSubstituida) {
 		String stringAntiga = "";
 		
 		for(Carta cartaMesa : this.mesa.getCartas()) {
@@ -107,7 +107,12 @@ public class AtorJogador {
 		
 		char[] stringAntigaChars = stringAntiga.toCharArray();
 		stringAntigaChars[cartaSubstituida] = cartaJogada.getLetra();
-		String stringFormada = String.valueOf(stringAntigaChars);
+		
+		return String.valueOf(stringAntigaChars);
+	}
+	
+	public void click(Carta cartaJogada, int cartaSubstituida) {
+		String stringFormada = preparaStringFormada(cartaJogada, cartaSubstituida);
 		
 		Lance lance = new Lance(
 				this.posicao,
