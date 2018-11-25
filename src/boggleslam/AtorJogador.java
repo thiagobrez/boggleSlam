@@ -78,15 +78,6 @@ public class AtorJogador {
 		return true;
 	}
 
-	/**
-	 * 
-	 * @param carta
-	 */
-	public void click(int carta) {
-		// TODO - implement AtorJogador.click
-		throw new UnsupportedOperationException();
-	}
-
 	public boolean verificaPrimeiroLance(Jogada jogada) {
 		return jogada instanceof PrimeiroLance;
 	}
@@ -108,6 +99,16 @@ public class AtorJogador {
 		interfaceBoggleSlam.exibirEstado();
 	}
 
+	public void click(Carta cartaJogada, int cartaSubstituida) {
+		
+		
+		Lance lance = new Lance(
+				this.mesa.getJogadores().get(this.posicao),
+				cartaJogada,
+				cartaSubstituida,
+		);
+	}
+	
 	/**
 	 * 
 	 * @param mesa
@@ -148,6 +149,10 @@ public class AtorJogador {
 			}
 			
 			Mesa mesa = new Mesa(jogadores);
+			
+			this.mesa = mesa;
+			this.cartas = this.mesa.getJogadores().get(this.posicao).getCartas();
+			
 			PrimeiroLance primeiroLance = new PrimeiroLance(mesa);
 			
 			rede.enviarJogada(primeiroLance);

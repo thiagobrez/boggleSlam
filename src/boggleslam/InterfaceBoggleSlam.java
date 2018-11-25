@@ -68,11 +68,11 @@ public class InterfaceBoggleSlam extends JFrame {
 
 	/**
 	 * 
-	 * @param carta
+	 * @param cartaJogada
+	 * @param cartaSubstituida
 	 */
-	public int click(int carta) {
-		// TODO - implement InterfaceBoggleSlam.click
-		throw new UnsupportedOperationException();
+	public int click(Carta cartaJogada, int cartaSubstituida) {
+		atorJogador.click(cartaJogada, cartaSubstituida);
 	}
 
 	/**

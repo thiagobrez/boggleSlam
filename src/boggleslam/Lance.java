@@ -9,6 +9,15 @@ public class Lance implements Jogada {
 	protected boolean valido;
 	protected boolean desafiado;
 
+	public Lance(Jogador jogador, Carta cartaJogada, int cartaSubstituida, String stringFormada) {
+		this.jogador = jogador;
+		this.cartaJogada = cartaJogada;
+		this.cartaSubstituida = cartaSubstituida;
+		this.stringFormada = stringFormada;
+		this.valido = false;
+		this.desafiado = false;
+	}
+	
 	public Jogador getJogador() {
 		return jogador;
 	}
