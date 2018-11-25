@@ -13,7 +13,6 @@ public class AtorJogador {
 
 	public AtorJogador(InterfaceBoggleSlam interfaceBoggleSlam) {
 		this.rede = new AtorNetGames(this);
-		this.gerenciadorPersistencia = new GerenciadorPersistencia();
 		this.interfaceBoggleSlam = interfaceBoggleSlam;
 	}
 	
@@ -100,13 +99,30 @@ public class AtorJogador {
 	}
 
 	public void click(Carta cartaJogada, int cartaSubstituida) {
+		String stringAntiga = "";
 		
+		for(Carta cartaMesa : this.mesa.getCartas()) {
+			stringAntiga = stringAntiga + Character.toString(cartaMesa.getLetra());
+		}
+		
+		char[] stringAntigaChars = stringAntiga.toCharArray();
+		stringAntigaChars[cartaSubstituida] = cartaJogada.getLetra();
+		String stringFormada = String.valueOf(stringAntigaChars);
 		
 		Lance lance = new Lance(
-				this.mesa.getJogadores().get(this.posicao),
+				this.posicao,
 				cartaJogada,
 				cartaSubstituida,
+				stringFormada
 		);
+		
+		int codigo = this.mesa.lance(lance);
+		
+		switch(codigo) {
+			case 0: this.interfaceBoggleSlam.notificarVencedor(idJogador);
+			case 1: this.interfaceBoggleSlam.notificarNaoDaVez();
+			//Cases do desafio
+		}
 	}
 	
 	/**

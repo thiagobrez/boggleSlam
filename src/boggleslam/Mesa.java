@@ -6,7 +6,7 @@ public class Mesa {
 	protected Baralho baralho;
 	protected ArrayList<Carta> cartas;
 	protected ArrayList<Jogador> jogadores;
-	protected Jogador jogadorAtual;
+	protected int jogadorAtual;
 	protected boolean partidaEmAndamento;
 	protected boolean conectado;
 
@@ -63,8 +63,7 @@ public class Mesa {
 	 * @param indexJogador
 	 */
 	public boolean verificaDaVez(int indexJogador) {
-		// TODO - implement Mesa.verificaDaVez
-		throw new UnsupportedOperationException();
+		return this.jogadorAtual == indexJogador;
 	}
 
 	/**
@@ -72,18 +71,36 @@ public class Mesa {
 	 * @param cartaJogada
 	 * @param cartaSubstituida
 	 */
-	public void substituirCartas(Carta cartaJogada, Carta cartaSubstituida) {
-		// TODO - implement Mesa.substituirCartas
-		throw new UnsupportedOperationException();
+	public void substituirCartas(Carta cartaJogada, int cartaSubstituida) {
+		this.cartas.set(cartaSubstituida, cartaJogada);
 	}
 
 	/**
 	 * 
 	 * @param lance
+	 * @return 
 	 */
-	public void lance(ILance lance) {
-		// TODO - implement Mesa.lance
-		throw new UnsupportedOperationException();
+	public int lance(Jogada lance) {
+		boolean daVez = verificaDaVez(((Lance) lance).getIndexJogador());
+		
+		if(daVez) {
+			String palavra = GerenciadorPersistencia.getInstance().get(((Lance) lance).getStringFormada());
+			
+			if(palavra != null) {
+				substituirCartas(((Lance) lance).getCartaJogada(), ((Lance) lance).getCartaSubstituida());
+				this.jogadores.get(this.jogadorAtual).removerCarta(((Lance) lance).getCartaJogada());
+				
+				boolean vencedor = this.jogadores.get(this.jogadorAtual).verificaVencedor();
+				
+				if(vencedor) {
+					return 0;
+				}
+			} else {
+				return desafio(lance);
+			}
+		}
+		
+		return 1;
 	}
 
 	/**
@@ -128,16 +145,15 @@ public class Mesa {
 		throw new UnsupportedOperationException();
 	}
 
-	public Carta[] getCartas() {
-		// TODO - implement Mesa.getCartas
-		throw new UnsupportedOperationException();
+	public ArrayList<Carta> getCartas() {
+		return this.cartas;
 	}
 
 	/**
 	 * 
 	 * @param lance
 	 */
-	public void desafio(ILance lance) {
+	public int desafio(Jogada lance) {
 		// TODO - implement Mesa.desafio
 		throw new UnsupportedOperationException();
 	}

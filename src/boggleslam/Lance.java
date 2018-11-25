@@ -2,28 +2,28 @@ import br.ufsc.inf.leobr.cliente.Jogada;
 
 public class Lance implements Jogada {
 
-	protected Jogador jogador;
+	protected int indexJogador;
 	protected Carta cartaJogada;
 	protected int cartaSubstituida;
 	protected String stringFormada;
 	protected boolean valido;
 	protected boolean desafiado;
 
-	public Lance(Jogador jogador, Carta cartaJogada, int cartaSubstituida, String stringFormada) {
-		this.jogador = jogador;
+	public Lance(int indexJogador, Carta cartaJogada, int cartaSubstituida, String stringFormada) {
+		this.indexJogador = indexJogador;
 		this.cartaJogada = cartaJogada;
 		this.cartaSubstituida = cartaSubstituida;
 		this.stringFormada = stringFormada;
 		this.valido = false;
 		this.desafiado = false;
 	}
-	
-	public Jogador getJogador() {
-		return jogador;
+
+	public int getIndexJogador() {
+		return indexJogador;
 	}
 
-	public void setJogador(Jogador jogador) {
-		this.jogador = jogador;
+	public void setIndexJogador(int indexJogador) {
+		this.indexJogador = indexJogador;
 	}
 
 	public Carta getCartaJogada() {

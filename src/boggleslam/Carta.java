@@ -6,4 +6,8 @@ public class Carta {
 		this.letra = letra;
 	}
 
+	public char getLetra() {
+		return letra;
+	}
+	
 }

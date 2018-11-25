@@ -71,7 +71,7 @@ public class InterfaceBoggleSlam extends JFrame {
 	 * @param cartaJogada
 	 * @param cartaSubstituida
 	 */
-	public int click(Carta cartaJogada, int cartaSubstituida) {
+	public void click(Carta cartaJogada, int cartaSubstituida) {
 		atorJogador.click(cartaJogada, cartaSubstituida);
 	}
 
@@ -86,13 +86,18 @@ public class InterfaceBoggleSlam extends JFrame {
 
 	/**
 	 * 
-	 * @param jogador
+	 * @param nomeJogador
 	 */
-	public void notificarVencedor(Jogador jogador) {
+	public void notificarVencedor(String nomeJogador) {
 		// TODO - implement InterfaceBoggleSlam.notificarVencedor
 		throw new UnsupportedOperationException();
 	}
 
+	public void notificarNaoDaVez() {
+		// TODO - implement InterfaceBoggleSlam.notificarVencedor
+		throw new UnsupportedOperationException();
+	}
+	
 	/**
 	 * 
 	 * @param cod
