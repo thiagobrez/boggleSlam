@@ -1,3 +1,5 @@
+package boggleslam;
+
 import br.ufsc.inf.leobr.cliente.Jogada;
 import java.util.ArrayList;
 
@@ -141,8 +143,9 @@ public class Mesa {
 	}
 
 	public void distribuirCartas() {
-		// TODO - implement Mesa.distribuirCartas
-		throw new UnsupportedOperationException();
+		for(Carta carta : this.baralho.getCartas()) {
+			
+		}
 	}
 
 	public ArrayList<Carta> getCartas() {
@@ -162,7 +165,7 @@ public class Mesa {
 	 * 
 	 * @param lance
 	 */
-	public int verificaVotosJogadores(ILance lance) {
+	public int verificaVotosJogadores(Jogada lance) {
 		// TODO - implement Mesa.verificaVotosJogadores
 		throw new UnsupportedOperationException();
 	}

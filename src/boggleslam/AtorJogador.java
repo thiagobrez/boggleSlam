@@ -1,3 +1,5 @@
+package boggleslam;
+
 import br.ufsc.inf.leobr.cliente.Jogada;
 import java.util.ArrayList;
 

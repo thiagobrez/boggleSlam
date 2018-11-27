@@ -1,3 +1,5 @@
+package boggleslam;
+
 public class Carta {
 
 	protected char letra;

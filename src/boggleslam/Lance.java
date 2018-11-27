@@ -1,3 +1,5 @@
+package boggleslam;
+
 import br.ufsc.inf.leobr.cliente.Jogada;
 
 public class Lance implements Jogada {
@@ -66,7 +68,7 @@ public class Lance implements Jogada {
 		this.desafiado = desafiado;
 	}
 
-	public ILance verificaPrimeiroLance() {
+	public Jogada verificaPrimeiroLance() {
 		// TODO - implement Lance.verificaPrimeiroLance
 		throw new UnsupportedOperationException();
 	}

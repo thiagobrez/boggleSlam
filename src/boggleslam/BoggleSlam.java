@@ -5,6 +5,8 @@
  */
 package boggleslam;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author thiagobrezinski
@@ -15,7 +17,10 @@ public class BoggleSlam {
 	 * @param args the command line arguments
 	 */
 	public static void main(String[] args) {
-		// TODO code application logic here
+		
+		InterfaceBoggleSlam interfaceBoggleSlam = new InterfaceBoggleSlam();
+		interfaceBoggleSlam.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		interfaceBoggleSlam.setVisible(true);
 	}
 	
 }

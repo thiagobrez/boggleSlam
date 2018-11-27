@@ -1,3 +1,4 @@
+package boggleslam;
 
 import java.util.ArrayList;
 
