@@ -25,13 +25,8 @@ public class AtorJogador {
 		if(!conectado) {
 			String servidor = interfaceBoggleSlam.obterServidor();
 			idJogador = interfaceBoggleSlam.obterIdJogador();
-			
-			System.out.println("servidor:" + servidor);
-			System.out.println("idJogador: " + idJogador);
-			
+
 			boolean exito = rede.conectar(servidor, idJogador);
-			
-			System.out.println("exito:" + exito);
 			
 			if(exito) {
 				mesa.estabelecerConectado(true);

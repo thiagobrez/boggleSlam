@@ -29,9 +29,7 @@ public class AtorNetGames implements OuvidorProxy {
 	 */
 	public boolean conectar(String servidor, String nome) {
 		try {
-			System.out.println("antes conec");
 			proxy.conectar(servidor, nome);
-			System.out.println("depois conec");
 			return true;
 		} catch (JahConectadoException e) {
 			JOptionPane.showMessageDialog(atorJogador.getInterfaceBoggleSlam(), e.getMessage());
@@ -53,7 +51,7 @@ public class AtorNetGames implements OuvidorProxy {
 			proxy.desconectar();
 			return true;
 		} catch (NaoConectadoException e) {
-//			JOptionPane.showMessageDialog(atorJogador.informarJanela(), e.getMessage());
+			JOptionPane.showMessageDialog(atorJogador.getInterfaceBoggleSlam(), e.getMessage());
 			e.printStackTrace();
 			return false;
 		}
@@ -63,7 +61,7 @@ public class AtorNetGames implements OuvidorProxy {
 		try {
 			proxy.iniciarPartida(new Integer(4));
 		} catch (NaoConectadoException e) {
-//			JOptionPane.showMessageDialog(atorJogador.informarJanela(), e.getMessage());
+			JOptionPane.showMessageDialog(atorJogador.getInterfaceBoggleSlam(), e.getMessage());
 			e.printStackTrace();
 		}
 	}
@@ -85,7 +83,7 @@ public class AtorNetGames implements OuvidorProxy {
 		try {
 			proxy.enviaJogada(lance);
 		} catch (NaoJogandoException e) {
-//			JOptionPane.showMessageDialog(atorJogador.informarJanela(), e.getMessage());
+			JOptionPane.showMessageDialog(atorJogador.getInterfaceBoggleSlam(), e.getMessage());
 			e.printStackTrace();
 		}
 	}
