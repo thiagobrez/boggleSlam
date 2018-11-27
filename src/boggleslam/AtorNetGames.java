@@ -29,7 +29,9 @@ public class AtorNetGames implements OuvidorProxy {
 	 */
 	public boolean conectar(String servidor, String nome) {
 		try {
+			System.out.println("antes conec");
 			proxy.conectar(servidor, nome);
+			System.out.println("depois conec");
 			return true;
 		} catch (JahConectadoException e) {
 			JOptionPane.showMessageDialog(atorJogador.getInterfaceBoggleSlam(), e.getMessage());
@@ -41,13 +43,6 @@ public class AtorNetGames implements OuvidorProxy {
 			return false;
 		} catch (ArquivoMultiplayerException e) {
 			JOptionPane.showMessageDialog(atorJogador.getInterfaceBoggleSlam(), e.getMessage());
-			e.printStackTrace();
-			return false;
-		} catch (Exception e) {
-			System.out.println("message: " + e.getMessage());
-			System.out.println("");
-			System.out.println("=================================");
-			System.out.println("");
 			e.printStackTrace();
 			return false;
 		}
