@@ -9,6 +9,7 @@ import br.ufsc.inf.leobr.cliente.exception.NaoConectadoException;
 import br.ufsc.inf.leobr.cliente.exception.NaoJogandoException;
 import br.ufsc.inf.leobr.cliente.exception.NaoPossivelConectarException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class AtorNetGames implements OuvidorProxy {
 
@@ -31,15 +32,22 @@ public class AtorNetGames implements OuvidorProxy {
 			proxy.conectar(servidor, nome);
 			return true;
 		} catch (JahConectadoException e) {
-//			JOptionPane.showMessageDialog(atorJogador.informarJanela(), e.getMessage());
+			JOptionPane.showMessageDialog(atorJogador.getInterfaceBoggleSlam(), e.getMessage());
 			e.printStackTrace();
 			return false;
 		} catch (NaoPossivelConectarException e) {
-//			JOptionPane.showMessageDialog(atorJogador.informarJanela(), e.getMessage());
+			JOptionPane.showMessageDialog(atorJogador.getInterfaceBoggleSlam(), e.getMessage());
 			e.printStackTrace();
 			return false;
 		} catch (ArquivoMultiplayerException e) {
-//			JOptionPane.showMessageDialog(atorJogador.informarJanela(), e.getMessage());
+			JOptionPane.showMessageDialog(atorJogador.getInterfaceBoggleSlam(), e.getMessage());
+			e.printStackTrace();
+			return false;
+		} catch (Exception e) {
+			System.out.println("message: " + e.getMessage());
+			System.out.println("");
+			System.out.println("=================================");
+			System.out.println("");
 			e.printStackTrace();
 			return false;
 		}

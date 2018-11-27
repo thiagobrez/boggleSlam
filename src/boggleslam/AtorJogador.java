@@ -14,6 +14,7 @@ public class AtorJogador {
 	protected int posicao;
 
 	public AtorJogador(InterfaceBoggleSlam interfaceBoggleSlam) {
+		this.mesa = new Mesa();
 		this.rede = new AtorNetGames(this);
 		this.interfaceBoggleSlam = interfaceBoggleSlam;
 	}
@@ -24,7 +25,13 @@ public class AtorJogador {
 		if(!conectado) {
 			String servidor = interfaceBoggleSlam.obterServidor();
 			idJogador = interfaceBoggleSlam.obterIdJogador();
+			
+			System.out.println("servidor:" + servidor);
+			System.out.println("idJogador: " + idJogador);
+			
 			boolean exito = rede.conectar(servidor, idJogador);
+			
+			System.out.println("exito:" + exito);
 			
 			if(exito) {
 				mesa.estabelecerConectado(true);
@@ -131,6 +138,14 @@ public class AtorJogador {
 			//Cases do desafio
 		}
 	}
+
+	public InterfaceBoggleSlam getInterfaceBoggleSlam() {
+		return interfaceBoggleSlam;
+	}
+
+	public void setInterfaceBoggleSlam(InterfaceBoggleSlam interfaceBoggleSlam) {
+		this.interfaceBoggleSlam = interfaceBoggleSlam;
+	}
 	
 	/**
 	 * 
@@ -171,9 +186,11 @@ public class AtorJogador {
 				jogadores.add(new Jogador(i, nomesAdversarios.get(i)));
 			}
 			
-			Mesa mesa = new Mesa(jogadores);
-			
-			this.mesa = mesa;
+//			Mesa mesa = new Mesa(jogadores);
+//			this.mesa = mesa;
+
+			this.mesa.setJogadores(jogadores);
+
 			this.cartas = this.mesa.getJogadores().get(this.posicao).getCartas();
 			
 			PrimeiroLance primeiroLance = new PrimeiroLance(mesa);

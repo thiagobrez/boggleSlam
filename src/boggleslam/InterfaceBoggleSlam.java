@@ -30,13 +30,13 @@ public class InterfaceBoggleSlam extends javax.swing.JFrame {
 
 	public String obterServidor() {
 		String idServidor = ("netgames.labsoft.ufsc.br");
-//		idServidor = JOptionPane.showInputDialog(this, ("Insira o endereço do servidor"), idServidor);
+		idServidor = JOptionPane.showInputDialog(this, ("Insira o endereço do servidor"), idServidor);
 		return idServidor;
 	}
 
 	public String obterIdJogador() {
 		String idJogador = ("jogador");
-//		idJogador = JOptionPane.showInputDialog(this, ("Insira o nome do jogador"));
+		idJogador = JOptionPane.showInputDialog(this, ("Insira o nome do jogador"));
 		return idJogador;
 	}
 
@@ -45,22 +45,22 @@ public class InterfaceBoggleSlam extends javax.swing.JFrame {
 	 * @param resultado
 	 */
 	public void notificarResultado(int resultado) {
-//		switch (resultado) {
-//			case 0:  JOptionPane.showMessageDialog(this, "Conex�o efetuada com exito"); break;        	
-//			case 1:  JOptionPane.showMessageDialog(this, "Tentativa de conex�o com conex�o previamente estabelecida"); break;
-//			case 2:  JOptionPane.showMessageDialog(this, "Tentativa de conexao falhou"); break;
-//			case 3:  JOptionPane.showMessageDialog(this, "Desonex�o efetuada com exito"); break;
-//			case 4:  JOptionPane.showMessageDialog(this, "Tentativa de desconexao sem conexao previamente estabelecida"); break;
-//			case 5:  JOptionPane.showMessageDialog(this, "Tentativa de desconexao falhou"); break;
-//			case 6:  JOptionPane.showMessageDialog(this, "Solicita��o de inicio procedida com �xito"); break;
-//			case 7:  JOptionPane.showMessageDialog(this, "Tentativa de inicio sem conexao previamente estabelecida"); break;
-//			case 8:  JOptionPane.showMessageDialog(this, "N�o � a sua vez"); break;
-//			case 9:  JOptionPane.showMessageDialog(this, "Partida encerrada"); break;
-//			case 10: JOptionPane.showMessageDialog(this, "Lance OK"); break;
-//			case 11: JOptionPane.showMessageDialog(this, "Posi��o ocupada"); break;
-//			case 12: JOptionPane.showMessageDialog(this, "Posi��o ilegal"); break;
-//			case 13: JOptionPane.showMessageDialog(this, "Partida corrente n�o interrompida"); break;
-//		};
+		switch (resultado) {
+			case 0:  JOptionPane.showMessageDialog(this, "Conex�o efetuada com exito"); break;        	
+			case 1:  JOptionPane.showMessageDialog(this, "Tentativa de conex�o com conex�o previamente estabelecida"); break;
+			case 2:  JOptionPane.showMessageDialog(this, "Tentativa de conexao falhou"); break;
+			case 3:  JOptionPane.showMessageDialog(this, "Desonex�o efetuada com exito"); break;
+			case 4:  JOptionPane.showMessageDialog(this, "Tentativa de desconexao sem conexao previamente estabelecida"); break;
+			case 5:  JOptionPane.showMessageDialog(this, "Tentativa de desconexao falhou"); break;
+			case 6:  JOptionPane.showMessageDialog(this, "Solicita��o de inicio procedida com �xito"); break;
+			case 7:  JOptionPane.showMessageDialog(this, "Tentativa de inicio sem conexao previamente estabelecida"); break;
+			case 8:  JOptionPane.showMessageDialog(this, "N�o � a sua vez"); break;
+			case 9:  JOptionPane.showMessageDialog(this, "Partida encerrada"); break;
+			case 10: JOptionPane.showMessageDialog(this, "Lance OK"); break;
+			case 11: JOptionPane.showMessageDialog(this, "Posi��o ocupada"); break;
+			case 12: JOptionPane.showMessageDialog(this, "Posi��o ilegal"); break;
+			case 13: JOptionPane.showMessageDialog(this, "Partida corrente n�o interrompida"); break;
+		};
 	}
 
 	public void desconectar() {

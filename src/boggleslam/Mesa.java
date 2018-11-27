@@ -12,10 +12,12 @@ public class Mesa {
 	protected boolean partidaEmAndamento;
 	protected boolean conectado;
 
-	public Mesa(ArrayList<Jogador> jogadores) {
+//	public Mesa(ArrayList<Jogador> jogadores) {
+	public Mesa() {
 		this.baralho = new Baralho();
-		this.jogadores = jogadores;
+//		this.jogadores = jogadores;
 		this.partidaEmAndamento = true;
+		this.conectado = false;
 		distribuirCartas();
 	}
 
