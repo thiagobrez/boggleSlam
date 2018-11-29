@@ -3,7 +3,7 @@ package boggleslam;
 import br.ufsc.inf.leobr.cliente.Jogada;
 import java.util.ArrayList;
 
-public class Mesa {
+public class Mesa implements Jogada {
 
 	protected Baralho baralho;
 	protected ArrayList<Carta> cartas;

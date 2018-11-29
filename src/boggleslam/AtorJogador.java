@@ -93,8 +93,6 @@ public class AtorJogador {
 		boolean primeiroLance = verificaPrimeiroLance(jogada);
 		
 		if(primeiroLance) {
-			System.out.println(this.posicao + "recebeu primeirolance");
-			
 			setMesa(((PrimeiroLance) jogada).getMesa());
 			setCartas(((PrimeiroLance) jogada).getMesa().getJogadores().get(this.posicao).getCartas());
 		} else {
@@ -179,10 +177,6 @@ public class AtorJogador {
 			ArrayList<Jogador> jogadores = new ArrayList<>();
 			jogadores.add(new Jogador(this.posicao, this.idJogador));
 			ArrayList<String> nomesAdversarios = rede.obterNomeAdversarios();
-			
-			for(String nome : nomesAdversarios) {
-				System.out.println("nome: " + nome);
-			}
 			
 			for(int i = 0; i < 3; i++) {
 				jogadores.add(new Jogador(i + 2, nomesAdversarios.get(i)));

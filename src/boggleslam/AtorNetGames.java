@@ -77,11 +77,11 @@ public class AtorNetGames implements OuvidorProxy {
 
 	/**
 	 * 
-	 * @param lance
+	 * @param jogada
 	 */
-	public void enviarJogada(Jogada lance) {
+	public void enviarJogada(Jogada jogada) {
 		try {
-			proxy.enviaJogada(lance);
+			proxy.enviaJogada(jogada);
 		} catch (NaoJogandoException e) {
 			JOptionPane.showMessageDialog(atorJogador.getInterfaceBoggleSlam(), e.getMessage());
 			e.printStackTrace();
@@ -94,9 +94,7 @@ public class AtorNetGames implements OuvidorProxy {
 	 */
 	@Override
 	public void receberJogada(Jogada jogada) {
-		System.out.println("recebeu jogada");
-		Lance estado = (Lance) jogada;
-		atorJogador.receberJogada(estado);
+		atorJogador.receberJogada(jogada);
 	}
 	
 	public ArrayList<String> obterNomeAdversarios() {

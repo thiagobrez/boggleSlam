@@ -1,10 +1,11 @@
 package boggleslam;
 
+import br.ufsc.inf.leobr.cliente.Jogada;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
-public class Baralho {
+public class Baralho implements Jogada {
 
 	protected ArrayList<Carta> cartas;
 

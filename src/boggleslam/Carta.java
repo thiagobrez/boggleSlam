@@ -1,6 +1,8 @@
 package boggleslam;
 
-public class Carta {
+import br.ufsc.inf.leobr.cliente.Jogada;
+
+public class Carta implements Jogada {
 
 	protected char letra;
 
