@@ -89,6 +89,7 @@ public class Mesa implements Jogada {
 			String palavra = GerenciadorPersistencia.getInstance().get(((Lance) lance).getStringFormada());
 			
 			if(palavra != null) {
+				((Lance) lance).setValido(true);
 				substituirCartas(((Lance) lance).getCartaJogada(), ((Lance) lance).getCartaSubstituida());
 				this.jogadores.get(this.jogadorAtual).removerCarta(((Lance) lance).getCartaJogada());
 				
@@ -98,6 +99,7 @@ public class Mesa implements Jogada {
 					return 0;
 				}
 			} else {
+				((Lance) lance).setDesafiado(true);
 				return desafio(lance);
 			}
 		}
