@@ -94,6 +94,7 @@ public class AtorNetGames implements OuvidorProxy {
 	 */
 	@Override
 	public void receberJogada(Jogada jogada) {
+		System.out.println("recebeu jogada");
 		Lance estado = (Lance) jogada;
 		atorJogador.receberJogada(estado);
 	}

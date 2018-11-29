@@ -93,6 +93,8 @@ public class AtorJogador {
 		boolean primeiroLance = verificaPrimeiroLance(jogada);
 		
 		if(primeiroLance) {
+			System.out.println(this.posicao + "recebeu primeirolance");
+			
 			setMesa(((PrimeiroLance) jogada).getMesa());
 			setCartas(((PrimeiroLance) jogada).getMesa().getJogadores().get(this.posicao).getCartas());
 		} else {
@@ -175,21 +177,22 @@ public class AtorJogador {
 		
 		if(posicao == 1) {
 			ArrayList<Jogador> jogadores = new ArrayList<>();
+			jogadores.add(new Jogador(this.posicao, this.idJogador));
 			ArrayList<String> nomesAdversarios = rede.obterNomeAdversarios();
 			
-			for(int i = 1; i <= 4; i++) {
-				jogadores.add(new Jogador(i, nomesAdversarios.get(i)));
+			for(String nome : nomesAdversarios) {
+				System.out.println("nome: " + nome);
 			}
 			
-//			Mesa mesa = new Mesa(jogadores);
-//			this.mesa = mesa;
+			for(int i = 0; i < 3; i++) {
+				jogadores.add(new Jogador(i + 2, nomesAdversarios.get(i)));
+			}
 
 			this.mesa.setJogadores(jogadores);
-
+			this.mesa.distribuirCartas();
 			this.cartas = this.mesa.getJogadores().get(this.posicao).getCartas();
 			
 			PrimeiroLance primeiroLance = new PrimeiroLance(mesa);
-			
 			rede.enviarJogada(primeiroLance);
 		}
 		

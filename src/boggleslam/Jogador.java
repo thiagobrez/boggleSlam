@@ -32,6 +32,10 @@ public class Jogador {
 		this.cartas.remove(cartaJogada);
 	}
 
+	public void adicionarCarta(Carta carta) {
+		this.cartas.add(carta);
+	}
+	
 	public boolean verificaVencedor() {
 		return this.cartas.isEmpty();
 	}

@@ -12,13 +12,11 @@ public class Mesa {
 	protected boolean partidaEmAndamento;
 	protected boolean conectado;
 
-//	public Mesa(ArrayList<Jogador> jogadores) {
 	public Mesa() {
 		this.baralho = new Baralho();
-//		this.jogadores = jogadores;
+		this.cartas = new ArrayList<>();
 		this.partidaEmAndamento = true;
 		this.conectado = false;
-		distribuirCartas();
 	}
 
 	public Baralho getBaralho() {
@@ -145,8 +143,22 @@ public class Mesa {
 	}
 
 	public void distribuirCartas() {
-		for(Carta carta : this.baralho.getCartas()) {
+		int indexJogador = 0;
+		
+		for(int i = 0; i < this.baralho.getCartas().size(); i++) {
+			if(i < 4) {
+				this.cartas.add(this.baralho.getCartas().get(i));
+			} else {
+				this.jogadores.get(indexJogador).adicionarCarta(this.baralho.getCartas().get(i));
+
+				if(indexJogador == 3) {
+					indexJogador = 0;
+				} else {
+					indexJogador++;
+				}
+			}
 			
+			this.baralho.getCartas().remove(this.baralho.getCartas().get(i));
 		}
 	}
 
