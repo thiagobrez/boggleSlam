@@ -10,13 +10,11 @@ public class Mesa implements Jogada {
 	protected ArrayList<Jogador> jogadores;
 	protected int jogadorAtual;
 	protected boolean partidaEmAndamento;
-	protected boolean conectado;
 
 	public Mesa() {
 		this.baralho = new Baralho();
 		this.cartas = new ArrayList<>();
 		this.partidaEmAndamento = true;
-		this.conectado = false;
 	}
 
 	public Baralho getBaralho() {
@@ -25,18 +23,6 @@ public class Mesa implements Jogada {
 
 	public void setBaralho(Baralho baralho) {
 		this.baralho = baralho;
-	}
-	
-	public boolean informarConectado() {
-		return this.conectado;
-	}
-
-	/**
-	 * 
-	 * @param valor
-	 */
-	public void estabelecerConectado(boolean valor) {
-		this.conectado = valor;
 	}
 
 	public boolean informarEmAndamento() {

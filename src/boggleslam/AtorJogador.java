@@ -12,15 +12,17 @@ public class AtorJogador {
 	protected GerenciadorPersistencia gerenciadorPersistencia;
 	protected InterfaceBoggleSlam interfaceBoggleSlam;
 	protected int posicao;
+	protected boolean conectado;
 
 	public AtorJogador(InterfaceBoggleSlam interfaceBoggleSlam) {
 		this.mesa = new Mesa();
 		this.rede = new AtorNetGames(this);
 		this.interfaceBoggleSlam = interfaceBoggleSlam;
+		this.conectado = false;
 	}
 	
 	public int conectar() {
-		boolean conectado = mesa.informarConectado();
+		boolean conectado = isConectado();
 		
 		if(!conectado) {
 			String servidor = interfaceBoggleSlam.obterServidor();
@@ -29,7 +31,7 @@ public class AtorJogador {
 			boolean exito = rede.conectar(servidor, idJogador);
 			
 			if(exito) {
-				mesa.estabelecerConectado(true);
+				setConectado(true);
 				return 0;
 			} else {
 				return 2;
@@ -39,13 +41,13 @@ public class AtorJogador {
 	}
 
 	public int desconectar() {
-		boolean conectado = mesa.informarConectado();
+		boolean conectado = isConectado();
 		
 		if(conectado) {
 			boolean exito = rede.desconectar();
 			
 			if(exito) {
-				mesa.estabelecerConectado(false);
+				setConectado(false);
 				return 3;
 			} else {
 				return 5;
@@ -63,7 +65,7 @@ public class AtorJogador {
 		if(emAndamento) {
 			interromper = avaliarInterrupcao();
 		} else {
-			conectado = mesa.informarConectado();
+			conectado = isConectado();
 		}
 		
 		if(interromper || (!emAndamento && conectado)) {
@@ -141,6 +143,14 @@ public class AtorJogador {
 	public void setInterfaceBoggleSlam(InterfaceBoggleSlam interfaceBoggleSlam) {
 		this.interfaceBoggleSlam = interfaceBoggleSlam;
 	}
+
+	public boolean isConectado() {
+		return conectado;
+	}
+
+	public void setConectado(boolean conectado) {
+		this.conectado = conectado;
+	}
 	
 	/**
 	 * 
@@ -150,6 +160,14 @@ public class AtorJogador {
 		this.mesa = mesa;
 	}
 
+	public Mesa getMesa() {
+		return mesa;
+	}
+
+	public ArrayList<Carta> getCartas() {
+		return cartas;
+	}
+	
 	/**
 	 * 
 	 * @param cartas
