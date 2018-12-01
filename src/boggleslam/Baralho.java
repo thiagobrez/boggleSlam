@@ -17,12 +17,12 @@ public class Baralho implements Jogada {
 		int numeroCartas = 52;
 		ArrayList<Character> alfabetoDuplo = new ArrayList<>(Arrays.asList(
 				'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
-				'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
-				'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X',
-				'Y', 'Z', 'A', 'B', 'C', 'D', 'E', 'F',
-				'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
+				'I', 'J', 'A', 'L', 'M', 'N', 'O', 'P',
+				'E', 'R', 'S', 'T', 'U', 'V', 'I', 'O',
+				'U', 'A', 'A', 'B', 'C', 'D', 'E', 'F',
+				'G', 'H', 'I', 'J', 'E', 'L', 'M', 'N',
 				'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V',
-				'W', 'X', 'Y', 'Z'
+				'I', 'O', 'U', 'A'
 		));
 		
 		for(int i = 0; i < numeroCartas; i++) {

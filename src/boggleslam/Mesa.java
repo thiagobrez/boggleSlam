@@ -131,26 +131,44 @@ public class Mesa implements Jogada {
 	}
 
 	public void distribuirCartas() {
-		for(int i = 0; i < 4; i++) {
-			this.cartas.add(this.baralho.getCartas().get(i));
-			this.baralho.getCartas().remove(this.baralho.getCartas().get(i));
+		boolean encontrouJ = false;
+		boolean encontrouO = false;
+		boolean encontrouG = false;
+		boolean encontrouSegundoO = false;
+		Carta[] cartasInicioMesa = new Carta[4];
+		
+		for(int i = 0; i < this.baralho.getCartas().size(); i++) {
+			Carta cartaIterada = this.baralho.getCartas().get(i);
+			
+			if(cartaIterada.getLetra() == 'J' && !encontrouJ) {
+				encontrouJ = true;
+				cartasInicioMesa[0] = cartaIterada;
+				this.baralho.getCartas().remove(cartaIterada);
+			} else if(cartaIterada.getLetra() == 'O' && !encontrouO) {
+				encontrouO = true;
+				cartasInicioMesa[1] = cartaIterada;
+				this.baralho.getCartas().remove(cartaIterada);
+			} else if(cartaIterada.getLetra() == 'G' && !encontrouG) {
+				encontrouG = true;
+				cartasInicioMesa[2] = cartaIterada;
+				this.baralho.getCartas().remove(cartaIterada);
+			} else if(cartaIterada.getLetra() == 'O' && !encontrouSegundoO) {
+				encontrouSegundoO = true;
+				cartasInicioMesa[3] = cartaIterada;
+				this.baralho.getCartas().remove(cartaIterada);
+			}
 		}
+		
+		this.cartas.add(cartasInicioMesa[0]);
+		this.cartas.add(cartasInicioMesa[1]);
+		this.cartas.add(cartasInicioMesa[2]);
+		this.cartas.add(cartasInicioMesa[3]);
 		
 		for(int i = 0; i < this.jogadores.size(); i++) {
 			for(int j = 11; j >= 0; j--) {
 				this.jogadores.get(i).adicionarCarta(this.baralho.getCartas().get(j));
 				this.baralho.getCartas().remove(this.baralho.getCartas().get(j));
 			}
-		}
-		
-		System.out.println("Baralho size: " + this.baralho.getCartas().size());
-		
-		for(Jogador jogador : this.jogadores) {
-			System.out.println("Jogador: " + jogador);
-			for(Carta carta : jogador.getCartas()) {
-				System.out.println("Carta: " + carta.getLetra());
-			}
-			System.out.println("");
 		}
 	}
 

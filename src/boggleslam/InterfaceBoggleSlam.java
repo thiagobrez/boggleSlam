@@ -17,6 +17,8 @@ public class InterfaceBoggleSlam extends javax.swing.JFrame {
 
 	protected AtorJogador atorJogador;
 	protected ArrayList<javax.swing.JButton> botoesCartasJogador;
+	protected int cartaMesaSelecionada;
+	protected Carta cartaJogadorSelecionada;
 	
 	/**
 	 * Creates new form NewJFrame
@@ -24,13 +26,15 @@ public class InterfaceBoggleSlam extends javax.swing.JFrame {
 	public InterfaceBoggleSlam() {
 		initComponents();
 		this.atorJogador = new AtorJogador(this);
+		
+		//NAO ALTERAR A ORDEM
 		this.botoesCartasJogador = new ArrayList<>(Arrays.asList(
+				this.jButton32,
 				this.jButton8,
 				this.jButton27,
 				this.jButton28,
 				this.jButton30,
 				this.jButton31,
-				this.jButton32,
 				this.jButton33,
 				this.jButton34,
 				this.jButton35,
@@ -149,6 +153,14 @@ public class InterfaceBoggleSlam extends javax.swing.JFrame {
 		throw new UnsupportedOperationException();
 	}
 
+	public void selecionaCartaMesa(int index) {
+		this.cartaMesaSelecionada = index;
+	}
+	
+	public void selecionaCartaJogador(int index) {
+		this.cartaJogadorSelecionada = this.atorJogador.getCartas().get(index);
+	}
+	
 	/**
 	 * 
 	 * @param indexJogador
@@ -176,6 +188,14 @@ public class InterfaceBoggleSlam extends javax.swing.JFrame {
 				this.botoesCartasJogador.get(i).setVisible(false);
 			}
 		}
+	}
+
+	public int getCartaMesaSelecionada() {
+		return cartaMesaSelecionada;
+	}
+
+	public Carta getCartaJogadorSelecionada() {
+		return cartaJogadorSelecionada;
 	}
 	
 	/**
@@ -276,11 +296,21 @@ public class InterfaceBoggleSlam extends javax.swing.JFrame {
 
         jButton8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton8.setText("A");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         jButton20.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
         jButton20.setText("JOGAR");
+        jButton20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton20ActionPerformed(evt);
+            }
+        });
 
         jButton21.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
         jButton21.setText("PASSAR");
@@ -323,36 +353,91 @@ public class InterfaceBoggleSlam extends javax.swing.JFrame {
 
         jButton27.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton27.setText("A");
+        jButton27.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton27ActionPerformed(evt);
+            }
+        });
 
         jButton28.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton28.setText("A");
+        jButton28.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton28ActionPerformed(evt);
+            }
+        });
 
         jButton30.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton30.setText("A");
+        jButton30.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton30ActionPerformed(evt);
+            }
+        });
 
         jButton31.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton31.setText("A");
+        jButton31.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton31ActionPerformed(evt);
+            }
+        });
 
         jButton32.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton32.setText("A");
+        jButton32.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton32ActionPerformed(evt);
+            }
+        });
 
         jButton33.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton33.setText("A");
+        jButton33.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton33ActionPerformed(evt);
+            }
+        });
 
         jButton34.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton34.setText("A");
+        jButton34.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton34ActionPerformed(evt);
+            }
+        });
 
         jButton35.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton35.setText("A");
+        jButton35.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton35ActionPerformed(evt);
+            }
+        });
 
         jButton36.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton36.setText("A");
+        jButton36.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton36ActionPerformed(evt);
+            }
+        });
 
         jButton37.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton37.setText("A");
+        jButton37.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton37ActionPerformed(evt);
+            }
+        });
 
         jButton38.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton38.setText("A");
+        jButton38.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton38ActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Nome do jogador");
 
@@ -556,7 +641,7 @@ public class InterfaceBoggleSlam extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        selecionaCartaMesa(0);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
@@ -568,17 +653,69 @@ public class InterfaceBoggleSlam extends javax.swing.JFrame {
         //jPanelFimDeJogo.setVisible(true);
     }//GEN-LAST:event_jButton22ActionPerformed
 
-    private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton24ActionPerformed
-
     private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed
-        // TODO add your handling code here:
+        selecionaCartaMesa(2);
     }//GEN-LAST:event_jButton25ActionPerformed
 
     private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
-        // TODO add your handling code here:
+        selecionaCartaMesa(3);
     }//GEN-LAST:event_jButton26ActionPerformed
+
+    private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
+        selecionaCartaMesa(1);
+    }//GEN-LAST:event_jButton24ActionPerformed
+
+    private void jButton32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton32ActionPerformed
+        selecionaCartaJogador(0);
+    }//GEN-LAST:event_jButton32ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        selecionaCartaJogador(1);
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
+        selecionaCartaJogador(2);
+    }//GEN-LAST:event_jButton27ActionPerformed
+
+    private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
+        selecionaCartaJogador(3);
+    }//GEN-LAST:event_jButton28ActionPerformed
+
+    private void jButton30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton30ActionPerformed
+        selecionaCartaJogador(4);
+    }//GEN-LAST:event_jButton30ActionPerformed
+
+    private void jButton31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton31ActionPerformed
+        selecionaCartaJogador(5);
+    }//GEN-LAST:event_jButton31ActionPerformed
+
+    private void jButton33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton33ActionPerformed
+        selecionaCartaJogador(6);
+    }//GEN-LAST:event_jButton33ActionPerformed
+
+    private void jButton34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton34ActionPerformed
+        selecionaCartaJogador(7);
+    }//GEN-LAST:event_jButton34ActionPerformed
+
+    private void jButton35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton35ActionPerformed
+        selecionaCartaJogador(8);
+    }//GEN-LAST:event_jButton35ActionPerformed
+
+    private void jButton36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton36ActionPerformed
+        selecionaCartaJogador(9);
+    }//GEN-LAST:event_jButton36ActionPerformed
+
+    private void jButton37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton37ActionPerformed
+        selecionaCartaJogador(10);
+    }//GEN-LAST:event_jButton37ActionPerformed
+
+    private void jButton38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton38ActionPerformed
+        selecionaCartaJogador(11);
+    }//GEN-LAST:event_jButton38ActionPerformed
+
+    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
+        click(this.cartaJogadorSelecionada, this.cartaMesaSelecionada);
+    }//GEN-LAST:event_jButton20ActionPerformed
 
 	/**
 	 * @param args the command line arguments

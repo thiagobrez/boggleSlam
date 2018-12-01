@@ -121,7 +121,7 @@ public class AtorJogador {
 		String stringFormada = preparaStringFormada(cartaJogada, cartaSubstituida);
 		
 		Lance lance = new Lance(
-				this.posicao,
+				this.posicao - 1,
 				cartaJogada,
 				cartaSubstituida,
 				stringFormada
