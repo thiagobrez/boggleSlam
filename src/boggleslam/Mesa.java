@@ -148,6 +148,14 @@ public class Mesa implements Jogada {
 			
 			this.baralho.getCartas().remove(this.baralho.getCartas().get(i));
 		}
+		
+		for(Jogador jogador : this.jogadores) {
+			System.out.println("Jogador: " + jogador);
+			
+			for(Carta carta : jogador.getCartas()) {
+				System.out.println("Carta: " + Character.toString(carta.getLetra()));
+			}
+		}
 	}
 
 	public ArrayList<Carta> getCartas() {

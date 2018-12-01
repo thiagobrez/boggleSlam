@@ -6,6 +6,7 @@
 package boggleslam;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,15 +15,30 @@ import javax.swing.JOptionPane;
  */
 public class InterfaceBoggleSlam extends javax.swing.JFrame {
 
+	protected AtorJogador atorJogador;
+	protected ArrayList<javax.swing.JButton> botoesCartasJogador;
+	
 	/**
 	 * Creates new form NewJFrame
 	 */
 	public InterfaceBoggleSlam() {
 		initComponents();
 		this.atorJogador = new AtorJogador(this);
+		this.botoesCartasJogador = new ArrayList<>(Arrays.asList(
+				this.jButton8,
+				this.jButton9,
+				this.jButton10,
+				this.jButton11,
+				this.jButton12,
+				this.jButton13,
+				this.jButton14,
+				this.jButton15,
+				this.jButton16,
+				this.jButton17,
+				this.jButton18,
+				this.jButton19
+		));
 	}
-
-	protected AtorJogador atorJogador;
 	
 	public void conectar() {
 		int resultado = atorJogador.conectar();
@@ -144,7 +160,14 @@ public class InterfaceBoggleSlam extends javax.swing.JFrame {
 		jButton6.setText(Character.toString(mesa.getCartas().get(2).getLetra()));
 		jButton7.setText(Character.toString(mesa.getCartas().get(3).getLetra()));
 		
-		
+		for(int i = 0; i < this.botoesCartasJogador.size(); i++) {
+			if(cartas.get(i) != null) {
+				this.botoesCartasJogador.get(i).setVisible(true);
+				this.botoesCartasJogador.get(i).setText(Character.toString(cartas.get(i).getLetra()));
+			} else {
+				this.botoesCartasJogador.get(i).setVisible(false);
+			}
+		}
 	}
 	
 	/**
@@ -234,7 +257,7 @@ public class InterfaceBoggleSlam extends javax.swing.JFrame {
                         .addComponent(jButton1)
                         .addGap(128, 128, 128)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(178, Short.MAX_VALUE))
+                .addContainerGap(185, Short.MAX_VALUE))
         );
         jPanelMenuPrincipalLayout.setVerticalGroup(
             jPanelMenuPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -245,7 +268,7 @@ public class InterfaceBoggleSlam extends javax.swing.JFrame {
                 .addGroup(jPanelMenuPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton3))
-                .addContainerGap(151, Short.MAX_VALUE))
+                .addContainerGap(156, Short.MAX_VALUE))
         );
 
         jLabel2.setFont(new java.awt.Font("Courier New", 1, 24)); // NOI18N
@@ -520,7 +543,7 @@ public class InterfaceBoggleSlam extends javax.swing.JFrame {
                     .addGroup(jPanelRegrasLayout.createSequentialGroup()
                         .addGap(194, 194, 194)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(202, Short.MAX_VALUE))
+                .addContainerGap(207, Short.MAX_VALUE))
         );
         jPanelRegrasLayout.setVerticalGroup(
             jPanelRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
