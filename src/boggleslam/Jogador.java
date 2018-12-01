@@ -12,6 +12,7 @@ public class Jogador implements Jogada {
 	protected boolean jogadaHabilitada;
 
 	public Jogador(int id, String nome) {
+		this.id = id;
 		this.cartas = new ArrayList<>();
 		this.vencedor = false;
 		this.jogadaHabilitada = false;

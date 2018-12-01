@@ -131,30 +131,26 @@ public class Mesa implements Jogada {
 	}
 
 	public void distribuirCartas() {
-		int indexJogador = 0;
-		
-		for(int i = 0; i < this.baralho.getCartas().size(); i++) {
-			if(i < 4) {
-				this.cartas.add(this.baralho.getCartas().get(i));
-			} else {
-				this.jogadores.get(indexJogador).adicionarCarta(this.baralho.getCartas().get(i));
-
-				if(indexJogador == 3) {
-					indexJogador = 0;
-				} else {
-					indexJogador++;
-				}
-			}
-			
+		for(int i = 0; i < 4; i++) {
+			this.cartas.add(this.baralho.getCartas().get(i));
 			this.baralho.getCartas().remove(this.baralho.getCartas().get(i));
 		}
 		
+		for(int i = 0; i < this.jogadores.size(); i++) {
+			for(int j = 11; j >= 0; j--) {
+				this.jogadores.get(i).adicionarCarta(this.baralho.getCartas().get(j));
+				this.baralho.getCartas().remove(this.baralho.getCartas().get(j));
+			}
+		}
+		
+		System.out.println("Baralho size: " + this.baralho.getCartas().size());
+		
 		for(Jogador jogador : this.jogadores) {
 			System.out.println("Jogador: " + jogador);
-			
 			for(Carta carta : jogador.getCartas()) {
-				System.out.println("Carta: " + Character.toString(carta.getLetra()));
+				System.out.println("Carta: " + carta.getLetra());
 			}
+			System.out.println("");
 		}
 	}
 

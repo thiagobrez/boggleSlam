@@ -68,15 +68,6 @@ public class AtorNetGames implements OuvidorProxy {
 
 	/**
 	 * 
-	 * @param posicao
-	 */
-//	public void iniciarNovaPartida(int posicao) {
-//		// TODO - implement AtorNetGames.iniciarNovaPartida
-//		throw new UnsupportedOperationException();
-//	}
-
-	/**
-	 * 
 	 * @param jogada
 	 */
 	public void enviarJogada(Jogada jogada) {

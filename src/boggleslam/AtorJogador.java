@@ -96,7 +96,7 @@ public class AtorJogador {
 		
 		if(primeiroLance) {
 			setMesa(((PrimeiroLance) jogada).getMesa());
-			setCartas(((PrimeiroLance) jogada).getMesa().getJogadores().get(this.posicao).getCartas());
+			setCartas(((PrimeiroLance) jogada).getMesa().getJogadores().get(this.posicao - 1).getCartas());
 		} else {
 			atualizarMesa((Lance) jogada);
 		}
@@ -202,13 +202,15 @@ public class AtorJogador {
 
 			this.mesa.setJogadores(jogadores);
 			this.mesa.distribuirCartas();
-			this.cartas = this.mesa.getJogadores().get(this.posicao).getCartas();
+			this.cartas = this.mesa.getJogadores().get(this.posicao - 1).getCartas();
 			
 			PrimeiroLance primeiroLance = new PrimeiroLance(mesa);
 			rede.enviarJogada(primeiroLance);
+			
+			interfaceBoggleSlam.exibirEstado();
 		}
 		
-		interfaceBoggleSlam.exibirEstado();
+		interfaceBoggleSlam.comecar();
 	}
 
 }

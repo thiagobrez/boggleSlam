@@ -25,19 +25,21 @@ public class InterfaceBoggleSlam extends javax.swing.JFrame {
 		initComponents();
 		this.atorJogador = new AtorJogador(this);
 		this.botoesCartasJogador = new ArrayList<>(Arrays.asList(
-				this.jButton8
-				//this.jButton9,
-				//this.jButton10,
-				//this.jButton11,
-				//this.jButton12,
-				//this.jButton13,
-				//this.jButton14,
-				//this.jButton15,
-				//this.jButton16,
-				//this.jButton17,
-				//this.jButton18,
-				//this.jButton19
+				this.jButton8,
+				this.jButton27,
+				this.jButton28,
+				this.jButton30,
+				this.jButton31,
+				this.jButton32,
+				this.jButton33,
+				this.jButton34,
+				this.jButton35,
+				this.jButton36,
+				this.jButton37,
+				this.jButton38
 		));
+		
+		this.jPanelMesa.setVisible(false);
 	}
 	
 	public void conectar() {
@@ -100,6 +102,11 @@ public class InterfaceBoggleSlam extends javax.swing.JFrame {
 		throw new UnsupportedOperationException();
 	}
 
+	public void comecar() {
+		jPanelMenuPrincipal.setVisible(false);
+		jPanelMesa.setVisible(true);
+	}
+	
 	/**
 	 * 
 	 * @param cartaJogada
@@ -155,16 +162,17 @@ public class InterfaceBoggleSlam extends javax.swing.JFrame {
 		Mesa mesa = atorJogador.getMesa();
 		ArrayList<Carta> cartas = atorJogador.getCartas();
 		
-		//jButton4.setText(Character.toString(mesa.getCartas().get(0).getLetra()));
-		jButton5.setText(Character.toString(mesa.getCartas().get(1).getLetra()));
-		//jButton6.setText(Character.toString(mesa.getCartas().get(2).getLetra()));
-		//jButton7.setText(Character.toString(mesa.getCartas().get(3).getLetra()));
+		jButton5.setText(Character.toString(mesa.getCartas().get(0).getLetra()));
+		jButton24.setText(Character.toString(mesa.getCartas().get(1).getLetra()));
+		jButton25.setText(Character.toString(mesa.getCartas().get(2).getLetra()));
+		jButton26.setText(Character.toString(mesa.getCartas().get(3).getLetra()));
 		
 		for(int i = 0; i < this.botoesCartasJogador.size(); i++) {
-			if(cartas.get(i) != null) {
+			
+			try {
 				this.botoesCartasJogador.get(i).setVisible(true);
 				this.botoesCartasJogador.get(i).setText(Character.toString(cartas.get(i).getLetra()));
-			} else {
+			} catch(Exception ex) {
 				this.botoesCartasJogador.get(i).setVisible(false);
 			}
 		}
@@ -185,7 +193,6 @@ public class InterfaceBoggleSlam extends javax.swing.JFrame {
         jPanelMenuPrincipal = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jPanelMesa = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
@@ -222,7 +229,7 @@ public class InterfaceBoggleSlam extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Courier New", 1, 24)); // NOI18N
-        jLabel1.setText("BEM VINDO AO BOGGLE SLAM!");
+        jLabel1.setText("BOGGLE SLAM!");
 
         jButton1.setFont(new java.awt.Font("Courier New", 0, 18)); // NOI18N
         jButton1.setText("Ler Regras");
@@ -232,40 +239,25 @@ public class InterfaceBoggleSlam extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Courier New", 0, 18)); // NOI18N
-        jButton3.setText("Jogar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanelMenuPrincipalLayout = new javax.swing.GroupLayout(jPanelMenuPrincipal);
         jPanelMenuPrincipal.setLayout(jPanelMenuPrincipalLayout);
         jPanelMenuPrincipalLayout.setHorizontalGroup(
             jPanelMenuPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelMenuPrincipalLayout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addGroup(jPanelMenuPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelMenuPrincipalLayout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(110, 110, 110))
-                    .addGroup(jPanelMenuPrincipalLayout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)
-                        .addGap(39, 39, 39))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMenuPrincipalLayout.createSequentialGroup()
+                .addContainerGap(172, Short.MAX_VALUE)
+                .addGroup(jPanelMenuPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(108, 108, 108))
         );
         jPanelMenuPrincipalLayout.setVerticalGroup(
             jPanelMenuPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelMenuPrincipalLayout.createSequentialGroup()
-                .addGap(83, 83, 83)
+                .addGap(86, 86, 86)
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanelMenuPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(163, 163, 163))
+                .addGap(29, 29, 29)
+                .addComponent(jButton1)
+                .addGap(149, 149, 149))
         );
 
         jLabel2.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
@@ -441,14 +433,15 @@ public class InterfaceBoggleSlam extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanelMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelMesaLayout.createSequentialGroup()
-                        .addGroup(jPanelMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton32, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton27, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton28, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton30, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton31, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton20))
+                        .addGroup(jPanelMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton20)
+                            .addGroup(jPanelMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jButton32, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButton27, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButton28, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButton30, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButton31, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanelMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -487,7 +480,7 @@ public class InterfaceBoggleSlam extends javax.swing.JFrame {
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanelMenuPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
             .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jLayeredPane1Layout.createSequentialGroup()
                     .addContainerGap()
@@ -562,15 +555,6 @@ public class InterfaceBoggleSlam extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        if(this.atorJogador.isConectado()) {
-			jPanelMenuPrincipal.setVisible(false);
-			jPanelMenuPrincipal.setVisible(false);	
-		} else {
-			JOptionPane.showMessageDialog(this, "Conexão não estabelecida!");
-		}
-    }//GEN-LAST:event_jButton3ActionPerformed
-
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
@@ -643,7 +627,6 @@ public class InterfaceBoggleSlam extends javax.swing.JFrame {
     private javax.swing.JButton jButton27;
     private javax.swing.JButton jButton28;
     private javax.swing.JButton jButton29;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton30;
     private javax.swing.JButton jButton31;
     private javax.swing.JButton jButton32;
