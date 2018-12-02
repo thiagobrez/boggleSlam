@@ -14,6 +14,7 @@ public class Mesa implements Jogada {
 	public Mesa() {
 		this.baralho = new Baralho();
 		this.cartas = new ArrayList<>();
+		this.jogadorAtual = 0;
 		this.partidaEmAndamento = true;
 	}
 
@@ -37,6 +38,14 @@ public class Mesa implements Jogada {
 		this.jogadores = jogadores;
 	}
 
+	public int getJogadorAtual() {
+		return jogadorAtual;
+	}
+
+	public void setJogadorAtual(int jogadorAtual) {
+		this.jogadorAtual = jogadorAtual;
+	}
+	
 	/**
 	 * 
 	 * @param carta
@@ -68,29 +77,17 @@ public class Mesa implements Jogada {
 	 * @param lance
 	 * @return 
 	 */
-	public int lance(Jogada lance) {
-		boolean daVez = verificaDaVez(((Lance) lance).getIndexJogador());
-		
-		if(daVez) {
-			String palavra = GerenciadorPersistencia.getInstance().get(((Lance) lance).getStringFormada());
-			
-			if(palavra != null) {
-				((Lance) lance).setValido(true);
-				substituirCartas(((Lance) lance).getCartaJogada(), ((Lance) lance).getCartaSubstituida());
-				this.jogadores.get(this.jogadorAtual).removerCarta(((Lance) lance).getCartaJogada());
-				
-				boolean vencedor = this.jogadores.get(this.jogadorAtual).verificaVencedor();
-				
-				if(vencedor) {
-					return 0;
-				}
-			} else {
-				((Lance) lance).setDesafiado(true);
-				return desafio(lance);
-			}
+	public Lance lance(Lance lance) {
+		String palavra = GerenciadorPersistencia.getInstance().get(lance.getStringFormada());
+
+		if(palavra != null) {
+			lance.setValido(true);
+			substituirCartas(lance.getCartaJogada(), lance.getCartaSubstituida());
+			this.jogadores.get(this.jogadorAtual).removerCarta(lance.getCartaJogada());
+		} else {
+			lance.setDesafiado(true);
 		}
-		
-		return 1;
+		return lance;
 	}
 
 	/**
@@ -98,8 +95,7 @@ public class Mesa implements Jogada {
 	 * @param indexJogador
 	 */
 	public void passarTurno(int indexJogador) {
-		// TODO - implement Mesa.passarTurno
-		throw new UnsupportedOperationException();
+		//TODO PASSAR TURNO
 	}
 
 	public void incrementaContadorTurnosPassados() {
@@ -117,17 +113,7 @@ public class Mesa implements Jogada {
 	 * @param indexJogador
 	 */
 	public void substituiJogadorDaVez(int indexJogador) {
-		// TODO - implement Mesa.substituiJogadorDaVez
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param jogada
-	 */
-	public void receberJogada(Jogada jogada) {
-		// TODO - implement Mesa.receberJogada
-		throw new UnsupportedOperationException();
+		this.jogadorAtual = indexJogador == 3 ? 0 : ++indexJogador;
 	}
 
 	public void distribuirCartas() {

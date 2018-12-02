@@ -6,13 +6,12 @@ import java.util.ArrayList;
 public class AtorJogador {
 
 	protected Mesa mesa;
-	protected ArrayList<Carta> cartas;
 	protected String idJogador;
 	protected AtorNetGames rede;
-	protected GerenciadorPersistencia gerenciadorPersistencia;
 	protected InterfaceBoggleSlam interfaceBoggleSlam;
 	protected int posicao;
 	protected boolean conectado;
+	protected Desafio lanceDesafiado;
 
 	public AtorJogador(InterfaceBoggleSlam interfaceBoggleSlam) {
 		this.mesa = new Mesa();
@@ -87,18 +86,74 @@ public class AtorJogador {
 		return jogada instanceof PrimeiroLance;
 	}
 	
+	public boolean verificaDesafio(Jogada jogada) {
+		return jogada instanceof Desafio;
+	}
+
+	public boolean verificaVoto(Jogada jogada) {
+		return jogada instanceof Voto;
+	}
+	
+	public boolean verificaMensagem(Jogada jogada) {
+		return jogada instanceof Mensagem;
+	}
+	
+	public boolean verificaPersistencia(Jogada jogada) {
+		return jogada instanceof Persistencia;
+	}	
+	
 	/**
 	 * 
 	 * @param jogada
 	 */
 	public void receberJogada(Jogada jogada) {
-		boolean primeiroLance = verificaPrimeiroLance(jogada);
+		boolean isPrimeiroLance = verificaPrimeiroLance(jogada);
+		boolean isDesafio = verificaDesafio(jogada);
+		boolean isVoto = verificaVoto(jogada);
+		boolean isMensagem = verificaMensagem(jogada);
+		boolean isPersistencia = verificaPersistencia(jogada);
 		
-		if(primeiroLance) {
+		if(isPrimeiroLance) {
 			setMesa(((PrimeiroLance) jogada).getMesa());
-			setCartas(((PrimeiroLance) jogada).getMesa().getJogadores().get(this.posicao - 1).getCartas());
+		} else if(isDesafio) {
+			boolean aprovado = this.interfaceBoggleSlam.exibeDesafio(((Desafio) jogada).getLance().getStringFormada());
+			Voto voto = new Voto(aprovado);
+			this.rede.enviarJogada(voto);
+		} else if(isVoto) {
+			Voto voto = (Voto) jogada;
+			this.lanceDesafiado.getVotos().add(voto);
+
+			if(this.lanceDesafiado.getVotos().size() == 3) {
+				int votosAprovados = 0;
+
+				for(Voto votoIterado : this.lanceDesafiado.getVotos()) {
+					if(votoIterado.isAprovado()) votosAprovados++;
+				}
+
+				if(votosAprovados >= 2) {
+					this.lanceDesafiado.getLance().setValido(true);
+					atualizarMesa(this.lanceDesafiado.getLance());
+					GerenciadorPersistencia.getInstance().persistirPalavra(this.lanceDesafiado.getLance().getStringFormada());
+					this.rede.enviarJogada(new Persistencia(this.lanceDesafiado.getLance().getStringFormada()));
+				}
+				
+				this.rede.enviarJogada(this.lanceDesafiado.getLance());
+			}
+		} else if(isMensagem) {
+			Mensagem mensagem = (Mensagem) jogada;
+			
+			//TODO TROCAR CODIGO PARA VENCEDOR			
+			if(mensagem.getCodigo() == 100) {
+				this.mesa.setJogadorAtual(-1);
+				this.interfaceBoggleSlam.notificarVencedor(mensagem.getTexto());
+			} else {
+				interfaceBoggleSlam.notificarResultado(((Mensagem) jogada).getCodigo());	
+			}
+		} else if(isPersistencia) {
+			GerenciadorPersistencia.getInstance().persistirPalavra(((Persistencia) jogada).getPalavra());
 		} else {
-			atualizarMesa((Lance) jogada);
+			Lance lance = (Lance) jogada;
+			atualizarMesa(lance);
 		}
 		
 		interfaceBoggleSlam.exibirEstado();
@@ -117,7 +172,7 @@ public class AtorJogador {
 		return String.valueOf(stringAntigaChars);
 	}
 	
-	public void click(Carta cartaJogada, int cartaSubstituida) {
+	public void lance(Carta cartaJogada, int cartaSubstituida) {
 		String stringFormada = preparaStringFormada(cartaJogada, cartaSubstituida);
 		
 		Lance lance = new Lance(
@@ -127,12 +182,29 @@ public class AtorJogador {
 				stringFormada
 		);
 		
-		int codigo = this.mesa.lance(lance);
+		boolean daVez = this.mesa.verificaDaVez(this.posicao - 1);
 		
-		switch(codigo) {
-			case 0: this.interfaceBoggleSlam.notificarVencedor(idJogador);
-			case 1: this.interfaceBoggleSlam.notificarNaoDaVez();
-			//Cases do desafio
+		if(daVez) {
+			Lance lanceValidado = this.mesa.lance(lance);
+			
+			if(lanceValidado.isDesafiado()) {
+				this.lanceDesafiado = new Desafio(lanceValidado);
+				this.rede.enviarJogada(this.lanceDesafiado);
+			} else {
+				this.rede.enviarJogada(lanceValidado);
+
+				boolean vencedor = this.mesa.getJogadores().get(this.posicao - 1).verificaVencedor();
+				if(vencedor) {
+					this.mesa.setJogadorAtual(-1);
+					
+					//TODO TROCAR CODIGO VENCEDOR
+					this.rede.enviarJogada(new Mensagem(100, idJogador));
+					this.interfaceBoggleSlam.notificarVencedor(idJogador);
+				}	
+			}
+		} else {
+			//TODO TROCAR CODIGO NAO DA VEZ
+			this.interfaceBoggleSlam.notificarResultado(101);
 		}
 	}
 
@@ -164,16 +236,8 @@ public class AtorJogador {
 		return mesa;
 	}
 
-	public ArrayList<Carta> getCartas() {
-		return cartas;
-	}
-	
-	/**
-	 * 
-	 * @param cartas
-	 */
-	public void setCartas(ArrayList<Carta> cartas) {
-		this.cartas = cartas;
+	public int getPosicao() {
+		return posicao;
 	}
 
 	/**
@@ -181,7 +245,12 @@ public class AtorJogador {
 	 * @param lance
 	 */
 	public void atualizarMesa(Lance lance) {
-		this.mesa.cartas.set(lance.getCartaSubstituida(), lance.getCartaJogada());
+		if(lance.isValido()) {
+			this.mesa.substituirCartas(lance.getCartaJogada(), lance.getCartaSubstituida());
+			this.mesa.getJogadores().get(lance.getIndexJogador()).removerCarta(lance.getCartaJogada());	
+		}
+		this.mesa.substituiJogadorDaVez(lance.getIndexJogador());
+		this.interfaceBoggleSlam.exibirEstado();
 	}
 
 	/**
@@ -202,7 +271,6 @@ public class AtorJogador {
 
 			this.mesa.setJogadores(jogadores);
 			this.mesa.distribuirCartas();
-			this.cartas = this.mesa.getJogadores().get(this.posicao - 1).getCartas();
 			
 			PrimeiroLance primeiroLance = new PrimeiroLance(mesa);
 			rede.enviarJogada(primeiroLance);

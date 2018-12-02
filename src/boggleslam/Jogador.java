@@ -13,9 +13,14 @@ public class Jogador implements Jogada {
 
 	public Jogador(int id, String nome) {
 		this.id = id;
+		this.nome = nome;
 		this.cartas = new ArrayList<>();
 		this.vencedor = false;
 		this.jogadaHabilitada = false;
+	}
+
+	public String getNome() {
+		return nome;
 	}
 	
 	public ArrayList<Carta> getCartas() {
