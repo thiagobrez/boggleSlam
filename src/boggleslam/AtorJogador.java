@@ -106,10 +106,6 @@ public class AtorJogador {
 		return jogada instanceof PassarTurno;
 	}	
 	
-	/**
-	 * 
-	 * @param jogada
-	 */
 	public void receberJogada(Jogada jogada) {
 		boolean isPrimeiroLance = verificaPrimeiroLance(jogada);
 		boolean isDesafio = verificaDesafio(jogada);
@@ -255,10 +251,6 @@ public class AtorJogador {
 		this.conectado = conectado;
 	}
 	
-	/**
-	 * 
-	 * @param mesa
-	 */
 	public void setMesa(Mesa mesa) {
 		this.mesa = mesa;
 	}
@@ -271,10 +263,6 @@ public class AtorJogador {
 		return posicao;
 	}
 
-	/**
-	 * 
-	 * @param lance
-	 */
 	public void atualizarMesa(Lance lance) {
 		if(lance.isValido()) {
 			this.mesa.setTurnosPassados(0);
@@ -285,10 +273,6 @@ public class AtorJogador {
 		this.interfaceBoggleSlam.exibirEstado();
 	}
 
-	/**
-	 * 
-	 * @param posicao
-	 */
 	public void iniciarNovaPartida(int posicao) {
 		this.posicao = posicao;
 		

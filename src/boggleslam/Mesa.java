@@ -55,38 +55,15 @@ public class Mesa implements Jogada {
 	public void setTurnosPassados(int turnosPassados) {
 		this.turnosPassados = turnosPassados;
 	}
-	
-	/**
-	 * 
-	 * @param carta
-	 */
-	public int click(int carta) {
-		// TODO - implement Mesa.click
-		throw new UnsupportedOperationException();
-	}
 
-	/**
-	 * 
-	 * @param indexJogador
-	 */
 	public boolean verificaDaVez(int indexJogador) {
 		return this.jogadorAtual == indexJogador;
 	}
 
-	/**
-	 * 
-	 * @param cartaJogada
-	 * @param cartaSubstituida
-	 */
 	public void substituirCartas(Carta cartaJogada, int cartaSubstituida) {
 		this.cartas.set(cartaSubstituida, cartaJogada);
 	}
 
-	/**
-	 * 
-	 * @param lance
-	 * @return 
-	 */
 	public Lance lance(Lance lance) {
 		String palavra = GerenciadorPersistencia.getInstance().get(lance.getStringFormada());
 
@@ -101,23 +78,9 @@ public class Mesa implements Jogada {
 		return lance;
 	}
 
-	/**
-	 * 
-	 * @param indexJogador
-	 */
 	public void passarTurno(int indexJogador) {
 		this.turnosPassados++;
 		substituiJogadorDaVez(indexJogador);
-	}
-
-	public void incrementaContadorTurnosPassados() {
-		// TODO - implement Mesa.incrementaContadorTurnosPassados
-		throw new UnsupportedOperationException();
-	}
-
-	public int verificaTurnosPassados() {
-		// TODO - implement Mesa.verificaTurnosPassados
-		throw new UnsupportedOperationException();
 	}
 
 	public String verificaVencedorTurnoPassado(int indexJogador) {
@@ -136,10 +99,6 @@ public class Mesa implements Jogada {
 		return this.jogadores.get(indexVencedor).getNome();
 	}
 	
-	/**
-	 * 
-	 * @param indexJogador
-	 */
 	public void substituiJogadorDaVez(int indexJogador) {
 		if(this.turnosPassados == this.jogadores.size()) {
 			this.jogadorAtual = -1;
@@ -195,23 +154,4 @@ public class Mesa implements Jogada {
 	public ArrayList<Carta> getCartas() {
 		return this.cartas;
 	}
-
-	/**
-	 * 
-	 * @param lance
-	 */
-	public int desafio(Jogada lance) {
-		// TODO - implement Mesa.desafio
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param lance
-	 */
-	public int verificaVotosJogadores(Jogada lance) {
-		// TODO - implement Mesa.verificaVotosJogadores
-		throw new UnsupportedOperationException();
-	}
-
 }

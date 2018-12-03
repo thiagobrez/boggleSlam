@@ -15,7 +15,7 @@ public class Baralho implements Jogada {
 		int limiteInferior = 0; //inclusivo
 		int limiteSuperior = 52; //exclusivo
 		int numeroCartas = 52;
-		ArrayList<Character> alfabetoDuplo = new ArrayList<>(Arrays.asList(
+		ArrayList<Character> letras = new ArrayList<>(Arrays.asList(
 				'A', 'B', 'C', 'D', 'E', 'F', 'G', 'A',
 				'I', 'J', 'A', 'L', 'M', 'N', 'O', 'P',
 				'E', 'R', 'S', 'T', 'U', 'V', 'I', 'O',
@@ -27,8 +27,8 @@ public class Baralho implements Jogada {
 		
 		for(int i = 0; i < numeroCartas; i++) {
 			int indiceAleatorio = r.nextInt(limiteSuperior - limiteInferior) + limiteInferior;
-			this.cartas.add(new Carta(alfabetoDuplo.get(indiceAleatorio)));
-			alfabetoDuplo.remove(indiceAleatorio);
+			this.cartas.add(new Carta(letras.get(indiceAleatorio)));
+			letras.remove(indiceAleatorio);
 			limiteSuperior--;
 		}
 	}

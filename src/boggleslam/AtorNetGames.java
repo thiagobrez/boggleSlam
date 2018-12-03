@@ -22,11 +22,6 @@ public class AtorNetGames implements OuvidorProxy {
 		proxy.addOuvinte(this);	
 	}
 	
-	/**
-	 * 
-	 * @param servidor
-	 * @param nome
-	 */
 	public boolean conectar(String servidor, String nome) {
 		try {
 			proxy.conectar(servidor, nome);
@@ -66,10 +61,6 @@ public class AtorNetGames implements OuvidorProxy {
 		}
 	}
 
-	/**
-	 * 
-	 * @param jogada
-	 */
 	public void enviarJogada(Jogada jogada) {
 		try {
 			proxy.enviaJogada(jogada);
@@ -79,10 +70,6 @@ public class AtorNetGames implements OuvidorProxy {
 		}
 	}
 
-	/**
-	 * 
-	 * @param jogada
-	 */
 	@Override
 	public void receberJogada(Jogada jogada) {
 		atorJogador.receberJogada(jogada);

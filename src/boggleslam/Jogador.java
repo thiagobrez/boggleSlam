@@ -31,10 +31,6 @@ public class Jogador implements Jogada {
 		this.cartas = cartas;
 	}
 	
-	/**
-	 * 
-	 * @param cartaJogada
-	 */
 	public void removerCarta(Carta cartaJogada) {
 		this.cartas.remove(cartaJogada);
 	}

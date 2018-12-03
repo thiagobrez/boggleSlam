@@ -67,10 +67,4 @@ public class Lance implements Jogada {
 	public void setDesafiado(boolean desafiado) {
 		this.desafiado = desafiado;
 	}
-
-	public Jogada verificaPrimeiroLance() {
-		// TODO - implement Lance.verificaPrimeiroLance
-		throw new UnsupportedOperationException();
-	}
-
 }

@@ -6,7 +6,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,14 +35,6 @@ public class GerenciadorPersistencia {
     public String get(String palavra) {
         return cache.get(palavra);
     }
-
-    public ArrayList<String> getList() {
-        return new ArrayList<>(cache.values());
-    }
-	
-	public ArrayList<String> getKeys() {
-		return new ArrayList<>(this.cache.keySet());
-	}
 	
     public void remove(String palavra) {
 		cache.remove(palavra);
