@@ -1,0 +1,56 @@
+Release Notes (Notas de Entrega)
+
+Nome do Produto: Boggle Slam!
+Data de Lançamento: 03/12/2018
+Versão 1.0
+
+<=============================================================================================>
+
+					  SOBRE
+
+Boggle Slam! consiste em um jogo de substituição de cartas a fim de montar palavras válidas
+na língua portuguesa e que utilizam somente quatro letras. Pensando nisso, o jogo possui como 
+intuito, além de gerar diversão ao desafiar seus jogadores, a pretensão de auxiliar no 
+aprendizado da língua portuguesa à crianças em etapas escolares iniciais.
+
+<=============================================================================================>
+
+					INSTALAÇÃO
+
+O download do Boggle Slam! resulta em um arquivo no formato "zip".
+Portanto, descompacte o todo o conteúdo em uma pasta qualquer de sua preferência. Ao fim da 
+descompactação, certifique-se de que o arquivo "cache.boggle" está na pasta.
+
+<=============================================================================================>
+
+					COMO JOGAR
+
+1. Execute o arquivo "BoggleSlam.jar".
+2. Caso desejar, você pode selecioanar a opção "Ver Regras" para entender as regras do jogo.
+3. Selecione a opção "Menu" e em seguida na opção "Conectar".
+4. Insira o servidor a ser utilizado e em seguida o nome de jogador.
+5. Assim que todos os 4 jogadores estiverem conectados, selecione a opção "Menu" novamente
+e em seguida "Iniciar Partida".
+6. Bom divertimento!
+
+
+<=============================================================================================>
+
+					MANUTENÇÃO
+
+É recomendável que sejam realizados backups do arquivo "Cache.boggle" sempre que possível,
+assim o banco de palavras válidas será mantido independentemente de problemas.
+
+<=============================================================================================>
+
+			  ESTADO ATUAL E MELHORIAS PARA PRÓXIMAS VERSÕES
+
+Pode-se citar que a jogabilidade na versão atual está aceitável e relativamente simples de 
+maneira que o jogo funciona sem problemas. Porém, podemos citar como ponto de melhoria a 
+necessidade de uma interface mais agradável e atrativa para o usuário. Para próximas versões
+ serão realizadas algumas mudanças que possuem o intuito de facilitar o entendimento, por 
+parte do usuário, sobre o estado atual do jogo e também sobre como prosseguir.
+
+Também para próximas versões, será implementado um sistema de gerenciamento do banco de palavras, 
+possibilitando aos jogadores gerenciarem as palavras aprovadas de maneira prévia ao inicio do 
+jogo.

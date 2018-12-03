@@ -75,13 +75,6 @@ public class InterfaceBoggleSlam extends javax.swing.JFrame {
 			case 5:  JOptionPane.showMessageDialog(this, "Tentativa de desconexão falhou"); break;
 			case 6:  JOptionPane.showMessageDialog(this, "Solicitação de início procedida com êxito"); break;
 			case 7:  JOptionPane.showMessageDialog(this, "Tentativa de início sem conexão previamente estabelecida"); break;
-			case 8:  JOptionPane.showMessageDialog(this, "Não é a sua vez"); break;
-			case 9:  JOptionPane.showMessageDialog(this, "Partida encerrada"); break;
-			case 10: JOptionPane.showMessageDialog(this, "Lance OK"); break;
-			case 11: JOptionPane.showMessageDialog(this, "Posição ocupada"); break;
-			case 12: JOptionPane.showMessageDialog(this, "Posição ilegal"); break;
-			case 13: JOptionPane.showMessageDialog(this, "Partida corrente não interrompida"); break;
-			
 			case 101: JOptionPane.showMessageDialog(this, "Não é a sua vez!"); break;
 		};
 	}
@@ -590,8 +583,28 @@ public class InterfaceBoggleSlam extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        //jPanelMenuPrincipal.setVisible(false);
-        //jPanelRegras.setVisible(true);
+        JOptionPane.showMessageDialog(null,
+            "Regras do Boggle Slam!\n" +
+"\n" +
+"1. Uma partida de Boggle Slam! deve conter 4 jogadores para iniciar.\n" +
+"2. Cada carta equivale a uma letra.\n" +
+"3. Ao iniciar o jogo, a palavra JOGO é definida como palavra inicial e disposta no centro da mesa.\n" +
+"4. Cada jogador recebe um total de 12 cartas definidas aleatoriamente a partir das cartas presentes no baralho.\n" +
+"5. As jogadas ocorrem por meio do sistema de turnos onde cada jogador possui a sua vez de realizar uma jogada ou passar a vez.\n" +
+"6. A realização da jogada consiste no ato de o jogador, na sua vez, selecionar uma carta da sua mão, selecionar uma carta que faz parte da palavra na mesa e realizar a troca.\n" +
+"7. Após um procedimento de jogada a nova palavra formada é sempre analisada.\n" +
+"8. Caso a palavra seja válida (presente no banco de palavras aprovadas) o jogo continua, o jogador que realizou a jogada perde de sua mão a carta que jogou e seu turno encerra.\n" +
+"9. Caso a palavra não corresponda a nenhuma palavra no conjunto de palavras conhecidas é iniciado o procedimento de desafio.\n" +
+"10. O procedimento de desafio consiste em uma votação com todos os jogadores, com exceção do que realizou o último procedimento de jogada, onde se deseja saber se a nova palavra é válida ou não.\n" +
+"11. Em caso de o desafio ser positivo a palavra se mantém na mesa, a mão do jogador se mantém com uma carta a menos e o jogo continua normalmente com o turno do próximo jogador.\n" +
+"12. Em caso de o desafio ser negativo a palavra volta a ser o que era antes do procedimento de jogada ser desafiado, a mão do jogador que realizou a jogada recebe de volta a sua carta lançada e o jogo\n       continua normalmente com o turno do próximo jogador.\n" +
+"13. O jogador pode passar o seu turno permitindo que o próximo jogador realize a sua ação.\n" +
+"14. É o vencedor aquele jogador que acabar com suas cartas antes de todos.\n" +
+"15. Caso os quatro jogadores passem seu turno de maneira seguida o jogo se encerra e ganha o jogo aquele que possuir menos cartas na mão.\n" +
+"\n" +
+"BOM JOGO! :)",
+            "Regras do jogo",
+            JOptionPane.PLAIN_MESSAGE);
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
