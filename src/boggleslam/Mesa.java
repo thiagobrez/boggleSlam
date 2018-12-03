@@ -10,12 +10,14 @@ public class Mesa implements Jogada {
 	protected ArrayList<Jogador> jogadores;
 	protected int jogadorAtual;
 	protected boolean partidaEmAndamento;
+	protected int turnosPassados;
 
 	public Mesa() {
 		this.baralho = new Baralho();
 		this.cartas = new ArrayList<>();
 		this.jogadorAtual = 0;
 		this.partidaEmAndamento = true;
+		this.turnosPassados = 0;
 	}
 
 	public Baralho getBaralho() {
@@ -44,6 +46,14 @@ public class Mesa implements Jogada {
 
 	public void setJogadorAtual(int jogadorAtual) {
 		this.jogadorAtual = jogadorAtual;
+	}
+
+	public int getTurnosPassados() {
+		return turnosPassados;
+	}
+
+	public void setTurnosPassados(int turnosPassados) {
+		this.turnosPassados = turnosPassados;
 	}
 	
 	/**
@@ -81,6 +91,7 @@ public class Mesa implements Jogada {
 		String palavra = GerenciadorPersistencia.getInstance().get(lance.getStringFormada());
 
 		if(palavra != null) {
+			this.turnosPassados = 0;
 			lance.setValido(true);
 			substituirCartas(lance.getCartaJogada(), lance.getCartaSubstituida());
 			this.jogadores.get(this.jogadorAtual).removerCarta(lance.getCartaJogada());
@@ -95,7 +106,8 @@ public class Mesa implements Jogada {
 	 * @param indexJogador
 	 */
 	public void passarTurno(int indexJogador) {
-		//TODO PASSAR TURNO
+		this.turnosPassados++;
+		substituiJogadorDaVez(indexJogador);
 	}
 
 	public void incrementaContadorTurnosPassados() {
@@ -108,12 +120,34 @@ public class Mesa implements Jogada {
 		throw new UnsupportedOperationException();
 	}
 
+	public String verificaVencedorTurnoPassado(int indexJogador) {
+		int menorNumeroCartas = 100;
+		int indexVencedor = -1;
+		
+		for(int i = 0; i < this.jogadores.size(); i++) {
+			int numeroCartasJogador = this.jogadores.get(i).getCartas().size();
+			if(numeroCartasJogador < menorNumeroCartas) {
+				menorNumeroCartas = numeroCartasJogador;
+				indexVencedor = i;
+			}
+		}
+		
+//		int indexVencedor = indexJogador == 3 ? 0 : ++indexJogador;
+		return this.jogadores.get(indexVencedor).getNome();
+	}
+	
 	/**
 	 * 
 	 * @param indexJogador
 	 */
 	public void substituiJogadorDaVez(int indexJogador) {
-		this.jogadorAtual = indexJogador == 3 ? 0 : ++indexJogador;
+		if(this.turnosPassados == this.jogadores.size()) {
+			this.jogadorAtual = -1;
+		} else if(indexJogador == 3) {
+			this.jogadorAtual = 0;
+		} else {
+			this.jogadorAtual = ++indexJogador;	
+		}
 	}
 
 	public void distribuirCartas() {

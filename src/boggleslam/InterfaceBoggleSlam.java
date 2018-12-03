@@ -88,6 +88,8 @@ public class InterfaceBoggleSlam extends javax.swing.JFrame {
 			case 11: JOptionPane.showMessageDialog(this, "Posição ocupada"); break;
 			case 12: JOptionPane.showMessageDialog(this, "Posição ilegal"); break;
 			case 13: JOptionPane.showMessageDialog(this, "Partida corrente não interrompida"); break;
+			
+			case 101: JOptionPane.showMessageDialog(this, "Não é a sua vez!"); break;
 		};
 	}
 
@@ -130,8 +132,7 @@ public class InterfaceBoggleSlam extends javax.swing.JFrame {
 	 * @param nomeJogador
 	 */
 	public void notificarVencedor(String nomeJogador) {
-		// TODO - implement InterfaceBoggleSlam.notificarVencedor
-		throw new UnsupportedOperationException();
+		JOptionPane.showMessageDialog(this, "O jogador " + nomeJogador + " venceu!");
 	}
 
 	public void notificarNaoDaVez() {
@@ -157,14 +158,18 @@ public class InterfaceBoggleSlam extends javax.swing.JFrame {
 	}
 	
 	public void passarTurno() {
-		this.atorJogador.getMesa().passarTurno(this.atorJogador.getPosicao() - 1);
+		this.atorJogador.passarTurno();
 	}
 
 	public void exibirEstado() {
 		Mesa mesa = atorJogador.getMesa();
 		ArrayList<Carta> cartas = this.atorJogador.getMesa().getJogadores().get(atorJogador.getPosicao() - 1).getCartas();
 		
-		jLabel4.setText("Jogador da vez: " + mesa.getJogadores().get(mesa.getJogadorAtual()).getNome());
+		jLabel4.setText(
+				mesa.getJogadorAtual() == -1 ?
+						"O jogo acabou!" :
+						"Jogador da vez: " + mesa.getJogadores().get(mesa.getJogadorAtual()).getNome()
+		);
 		jLabel5.setText(mesa.getJogadores().get(this.atorJogador.posicao - 1).getNome());
 		jButton5.setText(Character.toString(mesa.getCartas().get(0).getLetra()));
 		jButton24.setText(Character.toString(mesa.getCartas().get(1).getLetra()));

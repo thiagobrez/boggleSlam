@@ -100,6 +100,10 @@ public class AtorJogador {
 	
 	public boolean verificaPersistencia(Jogada jogada) {
 		return jogada instanceof Persistencia;
+	}
+	
+	public boolean verificaPassarTurno(Jogada jogada) {
+		return jogada instanceof PassarTurno;
 	}	
 	
 	/**
@@ -112,10 +116,12 @@ public class AtorJogador {
 		boolean isVoto = verificaVoto(jogada);
 		boolean isMensagem = verificaMensagem(jogada);
 		boolean isPersistencia = verificaPersistencia(jogada);
+		boolean isPassarTurno = verificaPassarTurno(jogada);
 		
 		if(isPrimeiroLance) {
 			setMesa(((PrimeiroLance) jogada).getMesa());
 		} else if(isDesafio) {
+			this.mesa.setTurnosPassados(0);
 			boolean aprovado = this.interfaceBoggleSlam.exibeDesafio(((Desafio) jogada).getLance().getStringFormada());
 			Voto voto = new Voto(aprovado);
 			this.rede.enviarJogada(voto);
@@ -132,11 +138,12 @@ public class AtorJogador {
 
 				if(votosAprovados >= 2) {
 					this.lanceDesafiado.getLance().setValido(true);
-					atualizarMesa(this.lanceDesafiado.getLance());
+//					atualizarMesa(this.lanceDesafiado.getLance());
 					GerenciadorPersistencia.getInstance().persistirPalavra(this.lanceDesafiado.getLance().getStringFormada());
 					this.rede.enviarJogada(new Persistencia(this.lanceDesafiado.getLance().getStringFormada()));
 				}
 				
+				atualizarMesa(this.lanceDesafiado.getLance());
 				this.rede.enviarJogada(this.lanceDesafiado.getLance());
 			}
 		} else if(isMensagem) {
@@ -151,6 +158,8 @@ public class AtorJogador {
 			}
 		} else if(isPersistencia) {
 			GerenciadorPersistencia.getInstance().persistirPalavra(((Persistencia) jogada).getPalavra());
+		} else if(isPassarTurno) {
+			this.mesa.passarTurno(((PassarTurno) jogada).getIndexJogador());
 		} else {
 			Lance lance = (Lance) jogada;
 			atualizarMesa(lance);
@@ -192,15 +201,16 @@ public class AtorJogador {
 				this.rede.enviarJogada(this.lanceDesafiado);
 			} else {
 				this.rede.enviarJogada(lanceValidado);
-
+				atualizarMesa(lanceValidado);
+				
 				boolean vencedor = this.mesa.getJogadores().get(this.posicao - 1).verificaVencedor();
 				if(vencedor) {
 					this.mesa.setJogadorAtual(-1);
 					
 					//TODO TROCAR CODIGO VENCEDOR
-					this.rede.enviarJogada(new Mensagem(100, idJogador));
-					this.interfaceBoggleSlam.notificarVencedor(idJogador);
-				}	
+					this.rede.enviarJogada(new Mensagem(100, this.idJogador));
+					this.interfaceBoggleSlam.notificarVencedor(this.idJogador);
+				}
 			}
 		} else {
 			//TODO TROCAR CODIGO NAO DA VEZ
@@ -208,6 +218,27 @@ public class AtorJogador {
 		}
 	}
 
+	public void passarTurno() {
+		boolean daVez = this.mesa.verificaDaVez(this.posicao - 1);
+		
+		if(daVez) {
+			this.mesa.passarTurno(this.posicao - 1);
+			this.rede.enviarJogada(new PassarTurno(this.posicao - 1));
+			
+			int turnosPassados = this.mesa.getTurnosPassados();
+			if(turnosPassados == this.mesa.getJogadores().size()) {
+				String jogadorVencedor = this.mesa.verificaVencedorTurnoPassado(this.posicao - 1);
+				this.rede.enviarJogada(new Mensagem(100, jogadorVencedor));
+				this.interfaceBoggleSlam.notificarVencedor(jogadorVencedor);
+			}
+			
+			this.interfaceBoggleSlam.exibirEstado();
+		} else {
+			//TODO TROCAR CODIGO NAO DA VEZ
+			this.interfaceBoggleSlam.notificarResultado(101);
+		}
+	}
+	
 	public InterfaceBoggleSlam getInterfaceBoggleSlam() {
 		return interfaceBoggleSlam;
 	}
@@ -246,6 +277,7 @@ public class AtorJogador {
 	 */
 	public void atualizarMesa(Lance lance) {
 		if(lance.isValido()) {
+			this.mesa.setTurnosPassados(0);
 			this.mesa.substituirCartas(lance.getCartaJogada(), lance.getCartaSubstituida());
 			this.mesa.getJogadores().get(lance.getIndexJogador()).removerCarta(lance.getCartaJogada());	
 		}

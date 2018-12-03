@@ -16,12 +16,12 @@ public class Baralho implements Jogada {
 		int limiteSuperior = 52; //exclusivo
 		int numeroCartas = 52;
 		ArrayList<Character> alfabetoDuplo = new ArrayList<>(Arrays.asList(
-				'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
+				'A', 'B', 'C', 'D', 'E', 'F', 'G', 'A',
 				'I', 'J', 'A', 'L', 'M', 'N', 'O', 'P',
 				'E', 'R', 'S', 'T', 'U', 'V', 'I', 'O',
 				'U', 'A', 'A', 'B', 'C', 'D', 'E', 'F',
-				'G', 'H', 'I', 'J', 'E', 'L', 'M', 'N',
-				'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V',
+				'G', 'E', 'I', 'J', 'E', 'L', 'M', 'N',
+				'O', 'P', 'I', 'R', 'S', 'T', 'U', 'V',
 				'I', 'O', 'U', 'A'
 		));
 		
