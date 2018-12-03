@@ -20,9 +20,6 @@ public class InterfaceBoggleSlam extends javax.swing.JFrame {
 	protected int cartaMesaSelecionada;
 	protected Carta cartaJogadorSelecionada;
 	
-	/**
-	 * Creates new form NewJFrame
-	 */
 	public InterfaceBoggleSlam() {
 		initComponents();
 		this.atorJogador = new AtorJogador(this);
@@ -68,10 +65,6 @@ public class InterfaceBoggleSlam extends javax.swing.JFrame {
 		return aprovado == 0;
 	}
 	
-	/**
-	 * 
-	 * @param resultado
-	 */
 	public void notificarResultado(int resultado) {
 		switch (resultado) {
 			case 0:  JOptionPane.showMessageDialog(this, "Conexão efetuada com êxito"); break;
@@ -103,50 +96,17 @@ public class InterfaceBoggleSlam extends javax.swing.JFrame {
 		this.notificarResultado(resultado);
 	}
 
-	public void exibeMensagemDesafioAprovado() {
-		// TODO - implement InterfaceBoggleSlam.exibeMensagemDesafioAprovado
-		throw new UnsupportedOperationException();
-	}
-
-	public void exibeMensagemDesafioNegado() {
-		// TODO - implement InterfaceBoggleSlam.exibeMensagemDesafioNegado
-		throw new UnsupportedOperationException();
-	}
-
 	public void comecar() {
 		jPanelMenuPrincipal.setVisible(false);
 		jPanelMesa.setVisible(true);
 	}
 	
-	/**
-	 * 
-	 * @param cartaJogada
-	 * @param cartaSubstituida
-	 */
 	public void lance(Carta cartaJogada, int cartaSubstituida) {
 		atorJogador.lance(cartaJogada, cartaSubstituida);
 	}
-
-	/**
-	 * 
-	 * @param nomeJogador
-	 */
+	
 	public void notificarVencedor(String nomeJogador) {
 		JOptionPane.showMessageDialog(this, "O jogador " + nomeJogador + " venceu!");
-	}
-
-	public void notificarNaoDaVez() {
-		// TODO - implement InterfaceBoggleSlam.notificarVencedor
-		throw new UnsupportedOperationException();
-	}
-	
-	/**
-	 * 
-	 * @param cod
-	 */
-	public void notificarIrregularidade(int cod) {
-		// TODO - implement InterfaceBoggleSlam.notificarIrregularidade
-		throw new UnsupportedOperationException();
 	}
 
 	public void selecionaCartaMesa(int index) {
