@@ -134,7 +134,6 @@ public class AtorJogador {
 
 				if(votosAprovados >= 2) {
 					this.lanceDesafiado.getLance().setValido(true);
-//					atualizarMesa(this.lanceDesafiado.getLance());
 					GerenciadorPersistencia.getInstance().persistirPalavra(this.lanceDesafiado.getLance().getStringFormada());
 					this.rede.enviarJogada(new Persistencia(this.lanceDesafiado.getLance().getStringFormada()));
 				}

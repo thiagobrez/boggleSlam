@@ -95,7 +95,6 @@ public class Mesa implements Jogada {
 			}
 		}
 		
-//		int indexVencedor = indexJogador == 3 ? 0 : ++indexJogador;
 		return this.jogadores.get(indexVencedor).getNome();
 	}
 	
