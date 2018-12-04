@@ -18,8 +18,7 @@ aprendizado da língua portuguesa à crianças em etapas escolares iniciais.
 					INSTALAÇÃO
 
 O download do Boggle Slam! resulta em um arquivo no formato "zip".
-Portanto, descompacte o todo o conteúdo em uma pasta qualquer de sua preferência. Ao fim da 
-descompactação, certifique-se de que o arquivo "cache.boggle" está na pasta.
+Portanto, descompacte o todo o conteúdo em uma pasta qualquer de sua preferência.
 
 <=============================================================================================>
 
