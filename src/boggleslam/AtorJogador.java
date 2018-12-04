@@ -200,15 +200,14 @@ public class AtorJogador {
 				
 				boolean vencedor = this.mesa.getJogadores().get(this.posicao - 1).verificaVencedor();
 				if(vencedor) {
+					this.mesa.getJogadores().get(this.posicao - 1).setVencedor(true);
+					this.mesa.getJogadores().get(this.posicao - 1).setJogadaHabilitada(false);
 					this.mesa.setJogadorAtual(-1);
-					
-					//TODO TROCAR CODIGO VENCEDOR
 					this.rede.enviarJogada(new Mensagem(100, this.idJogador));
 					this.interfaceBoggleSlam.notificarVencedor(this.idJogador);
 				}
 			}
 		} else {
-			//TODO TROCAR CODIGO NAO DA VEZ
 			this.interfaceBoggleSlam.notificarResultado(101);
 		}
 	}
@@ -229,7 +228,6 @@ public class AtorJogador {
 			
 			this.interfaceBoggleSlam.exibirEstado();
 		} else {
-			//TODO TROCAR CODIGO NAO DA VEZ
 			this.interfaceBoggleSlam.notificarResultado(101);
 		}
 	}

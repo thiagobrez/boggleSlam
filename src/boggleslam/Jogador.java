@@ -30,6 +30,22 @@ public class Jogador implements Jogada {
 	public void setCartas(ArrayList<Carta> cartas) {
 		this.cartas = cartas;
 	}
+
+	public boolean isVencedor() {
+		return vencedor;
+	}
+
+	public void setVencedor(boolean vencedor) {
+		this.vencedor = vencedor;
+	}
+
+	public boolean isJogadaHabilitada() {
+		return jogadaHabilitada;
+	}
+
+	public void setJogadaHabilitada(boolean jogadaHabilitada) {
+		this.jogadaHabilitada = jogadaHabilitada;
+	}
 	
 	public void removerCarta(Carta cartaJogada) {
 		this.cartas.remove(cartaJogada);
