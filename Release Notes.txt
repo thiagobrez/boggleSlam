@@ -22,9 +22,19 @@ Portanto, descompacte o todo o conteúdo em uma pasta qualquer de sua preferência
 
 <=============================================================================================>
 
+				COMO RODAR O SERVIDOR LOCAL
+
+1. Com o terminal no diret—rio descompactado, execute o seguinte comando:
+	$ java -jar NetGames/servidor.jar
+
+<=============================================================================================>
+
 					COMO JOGAR
 
-1. Execute o arquivo "BoggleSlam.jar".
+1. Com o terminal no diret—rio descompactado, execute o seguinte comando:
+	$ java -jar store/boggleSlam.jar
+
+
 2. Caso desejar, você pode selecioanar a opção "Ver Regras" para entender as regras do jogo.
 3. Selecione a opção "Menu" e em seguida na opção "Conectar".
 4. Insira o servidor a ser utilizado e em seguida o nome de jogador.
@@ -37,7 +47,7 @@ e em seguida "Iniciar Partida".
 
 					MANUTENÇÃO
 
-É recomendável que sejam realizados backups do arquivo "Cache.boggle" sempre que possível,
+É recomendável que sejam realizados backups do arquivo "cache.boggle" sempre que possível,
 assim o banco de palavras válidas será mantido independentemente de problemas.
 
 <=============================================================================================>
